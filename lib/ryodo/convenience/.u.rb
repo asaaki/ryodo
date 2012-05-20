@@ -1,5 +1,4 @@
 # encoding: utf-8
-$KCODE = "UTF-8" if RUBY_VERSION =~ /^1\.8\.7/
 
 module Ryodo
   module Convenience
