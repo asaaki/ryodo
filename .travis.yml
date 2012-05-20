@@ -1,0 +1,14 @@
+rvm:
+  - 1.9.3
+  - 1.9.2
+  - 1.8.7
+
+
+branches:
+  only:
+    - develop
+    - master
+
+notifications:
+  email:
+    - chris@dinarrr.com
