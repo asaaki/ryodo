@@ -37,7 +37,9 @@ describe Ryodo::SuffixListFetcher do
     it "#fetch_data retrieves remote data" do
       fetcher.fetch_data
 
-      fetcher.instance_variable_get("@fetched_data").should be_kind_of(Enumerator)
+      fetcher.instance_variable_get("@fetched_data").should be_kind_of(Enumerator)             if RUBY_VERSION =~ /^1\.9\./
+      fetcher.instance_variable_get("@fetched_data").should be_kind_of(Enumerable::Enumerator) if RUBY_VERSION =~ /^1\.8\./
+
       fetcher.instance_variable_get("@fetched_data").first.should =~ /BEGIN LICENSE BLOCK/
     end
 

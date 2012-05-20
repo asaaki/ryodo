@@ -11,7 +11,8 @@ module Ryodo
     def parse_data
       # loads and converts to array
       # "baz.bar.foo" => ["baz", "bar", "foo"]
-      @suffix_data = File.readlines(@suffix_file).map{ |line| line.strip.split(".") }
+      @suffix_data =  File.readlines(@suffix_file).
+                        map{ |line| line.strip.split(".") }
     end
 
     def load_file suffix_file = Ryodo::PUBLIC_SUFFIX_STORE
