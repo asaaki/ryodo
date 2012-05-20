@@ -15,7 +15,11 @@ end
 require "ryodo/domain"
 require "ryodo/methods"
 require "ryodo/suffix_list"
-#require "ryodo/suffix_list_fetcher" # not explicitly loaded!
+require "ryodo/rule"
+require "ryodo/rule_set"
+require "ryodo/query"
+require "ryodo/match"
+require "ryodo/no_match"
 
 module Ryodo
   extend Ryodo::Methods

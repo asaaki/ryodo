@@ -40,6 +40,10 @@ module Ryodo
         instance.list
       end
 
+      def get_tld tld
+        instance.get_tld tld
+      end
+
       def instance
         @@instance ||= new
       end
