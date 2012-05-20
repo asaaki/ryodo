@@ -13,5 +13,12 @@ module Ryodo
 end
 
 require "ryodo/domain"
+require "ryodo/methods"
 require "ryodo/suffix_list"
 #require "ryodo/suffix_list_fetcher" # not explicitly loaded!
+
+module Ryodo
+  extend Ryodo::Methods
+  require "ryodo/convenience"
+  require "ryodo/convenience/.u" unless Kernel.const_defined?("RYODO_NO_U") || ENV['RYODO_NO_U']
+end

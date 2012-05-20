@@ -37,6 +37,11 @@ task :pry do
   sh "pry -I lib -r ryodo --no-pager"
 end
 
+desc "Starts PRY with gem loaded (RYODO_NO_U)"
+task :pryu do
+  sh "pry -I lib --no-pager -e 'RYODO_NO_U=true;require \"ryodo\"'"
+end
+
 desc "Run all specs"
 task RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
