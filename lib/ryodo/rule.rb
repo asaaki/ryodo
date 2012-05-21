@@ -25,12 +25,13 @@ module Ryodo
       # fill up to the length of query
       res = res.fill(:rest, res.length..(query.length-1)) if res.length < query.length
 
-      matched = if res[1..-1].uniq.include?(false) || !res.include?(:rest)
-        Ryodo::NoMatch.new(res, query)
-      else
-        Ryodo::Match.new(res, query)
-      end
-      matched
+      # matched = if res[1..-1].uniq.include?(false) || !res.include?(:rest)
+      #   Ryodo::Match.new(res, query)
+      # else
+      #   Ryodo::Match.new(res, query)
+      # end
+      # matched
+      Ryodo::Match.new(res, query)
     end
 
   end

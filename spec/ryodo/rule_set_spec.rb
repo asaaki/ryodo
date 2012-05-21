@@ -32,7 +32,7 @@ describe Ryodo::RuleSet do
   end
 
   it "#find_rules is empty if absolutely no rules could be found" do
-    obj = described_class.new(@query,["uk","us"])
+    obj = described_class.new(@query,[["uk"],["us"]])
     rules = obj.find_rules
 
     rules.should == []

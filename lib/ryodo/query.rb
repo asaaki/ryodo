@@ -3,6 +3,7 @@
 module Ryodo
 
   class QueryError < StandardError; end
+  class NoMatchesError < StandardError; end
 
   class Query
 
@@ -27,6 +28,14 @@ module Ryodo
 
     def get_rule_set
       @rule_set = Ryodo::RuleSet.new(@query, Ryodo::SuffixList.list)
+    end
+
+    def apply_rule_set
+      @matches = (@rule_set || get_rule_set).apply
+    end
+
+    def best_match
+      @result = (@matches || apply_rule_set).first
     end
 
   end

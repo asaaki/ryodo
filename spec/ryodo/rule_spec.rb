@@ -16,13 +16,13 @@ describe Ryodo::Rule do
   end
 
 
-  context "#match" do
+  context "#match (Ryodo::Match)" do
     it "single tld, simple domain" do
       i    = ["jp"]
       q    = ["jp","example"]
       rule = described_class.new(i)
 
-      rule.match(q).should be_kind_of(Ryodo::Match)
+      rule.match(q).should be_matched
     end
 
     it "single tld, simple tld (no match)" do
@@ -30,10 +30,7 @@ describe Ryodo::Rule do
       q    = ["jp"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :tld
+      rule.match(q).should_not be_matched
     end
 
     it "single tld, different tld (no match)" do
@@ -41,10 +38,7 @@ describe Ryodo::Rule do
       q    = ["de"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "long tld, simple domain" do
@@ -52,7 +46,7 @@ describe Ryodo::Rule do
       q    = ["jp","co","example"]
       rule = described_class.new(i)
 
-      rule.match(q).should be_kind_of(Ryodo::Match)
+      rule.match(q).should be_matched
     end
 
     it "long tld, simple tld (no match)" do
@@ -60,10 +54,7 @@ describe Ryodo::Rule do
       q    = ["jp","co"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :tld
+      rule.match(q).should_not be_matched
     end
 
     it "long tld, different tld (no match)" do
@@ -71,10 +62,7 @@ describe Ryodo::Rule do
       q    = ["jp","bar"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "long tld, too short tld (no match)" do
@@ -82,10 +70,7 @@ describe Ryodo::Rule do
       q    = ["jp"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "item => wildcard, query => domain" do
@@ -93,7 +78,7 @@ describe Ryodo::Rule do
       q    = ["jp","co","example"]
       rule = described_class.new(i)
 
-      rule.match(q).should be_kind_of(Ryodo::Match)
+      rule.match(q).should be_matched
     end
 
     it "item => wildcard, query => tld (no match)" do
@@ -101,10 +86,7 @@ describe Ryodo::Rule do
       q    = ["jp","co"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :tld
+      rule.match(q).should_not be_matched
     end
 
     it "item => wildcard, query => different tld (no match)" do
@@ -112,10 +94,7 @@ describe Ryodo::Rule do
       q    = ["jp","foo","bar"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "item => wildcard, query => too short tld (no match)" do
@@ -123,10 +102,7 @@ describe Ryodo::Rule do
       q    = ["jp","foo"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "item => override, query => domain" do
@@ -134,18 +110,15 @@ describe Ryodo::Rule do
       q    = ["jp","foo","example"]
       rule = described_class.new(i)
 
-      rule.match(q).should be_kind_of(Ryodo::Match)
+      rule.match(q).should be_matched
     end
 
-    it "item => override, query => tld (no match)" do
+    it "item => override, query => tld" do
       i    = ["jp","!foo"]
       q    = ["jp","foo"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :tld
+      rule.match(q).should be_matched
     end
 
     it "item => override, query => different tld (no match)" do
@@ -153,10 +126,7 @@ describe Ryodo::Rule do
       q    = ["jp","bar","example"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
     it "item => override, query => too short tld (no match)" do
@@ -164,10 +134,7 @@ describe Ryodo::Rule do
       q    = ["jp","co"]
       rule = described_class.new(i)
 
-      matched = rule.match(q)
-
-      matched.should be_kind_of(Ryodo::NoMatch)
-      matched.result == :invalid
+      rule.match(q).should_not be_matched
     end
 
   end
