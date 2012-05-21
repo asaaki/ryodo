@@ -11,9 +11,10 @@ module Ryodo
 
     def find_rules
       # preselect list items for matching first element
+      # and only max length of query
       # this is to reduce rule matching overhead
       list_items = @list.select do |elem|
-        elem.first == @query.first
+        elem.first == @query.first && elem.length <= @query.length
       end
 
       @rules = list_items.map do |elem|
