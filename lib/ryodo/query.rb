@@ -9,7 +9,7 @@ module Ryodo
 
     def initialize query
       raise QueryError, "Invalid query input!" if query.nil? || !query.is_a?(String) || query.empty?
-      @raw_query = query
+      @raw_query = query.to_s.downcase
       build_query
     end
 

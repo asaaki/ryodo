@@ -30,16 +30,16 @@ module Ryodo
         rule.match @query
       end.sort{|a,b| a <=> b }
 
-      would_match = matches.first # possible best match, also if it fails
+      @would_match = matches.first # possible best match, also if it fails
 
       matches = matches.select do |match|
         match.matched?
       end
 
-      if matches.include?(would_match)
-        @matches = matches
+      if !matches.include?(@would_match) && !@would_match.nil? && @would_match.result[:rule].last == :wildcard
+        @matches = []
       else
-        []
+        @matches = matches
       end
     end
 

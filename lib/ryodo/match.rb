@@ -74,6 +74,7 @@ module Ryodo
       {
         :prio      => get_priority,
         :matched   => matched?,
+        :rule      => @rule,
         :domain    => get_domain,
         :domain_m  => @domain,
         :subdomain => get_subdomain,
