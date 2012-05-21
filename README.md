@@ -48,7 +48,7 @@ dom.fqdn_reversed.to_a #=> ["jp","co","domain","awesome","my"] - root element re
 
 ## Ryodo::Domain
 
-The internal representation of a parsed domain string by Ryodo.parse.
+The internal representation of a parsed domain string by `Ryodo.parse`.
 
 ## Ryodo::SuffixList
 

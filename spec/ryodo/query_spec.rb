@@ -81,7 +81,7 @@ describe Ryodo::Query do
     it "returns a RuleSet" do
       Ryodo::SuffixList.stub(:list).and_return(@list)
 
-      Ryodo::RuleSet.should_receive(:new).with(@list, @query).and_return("rule_set object")
+      Ryodo::RuleSet.should_receive(:new).with(@query,@list).and_return("rule_set object")
       rquery.get_rule_set.should == "rule_set object"
     end
 

@@ -4,7 +4,7 @@ require File.expand_path("../../spec_helper.rb", __FILE__)
 describe Ryodo::RuleSet do
 
   before do
-    @query = "jp"
+    @query = ["jp","example","www"]
     @list = [["de"],["jp"],["com"]]
   end
 
@@ -24,17 +24,33 @@ describe Ryodo::RuleSet do
     obj.instance_variable_get(:@list).should == @list
   end
 
-  it "#find_rules collects matching list items for one level (always first level)" do
-    rule = Ryodo::Rule.new(["jp"])
+  it "#find_rules collects matching list items" do
+    rules = ruleset.find_rules
 
-    Ryodo::Rule.should_receive(:new).and_return(rule)
-    ruleset.find_rules.should == [rule]
+    rules.should be_kind_of(Array)
+    rules.all?{|e| e.is_a?(Ryodo::Rule)}.should be_true
   end
 
-  it "#apply! returns a set of rules" do
-    applied = ruleset.apply!
-    applied.should be_kind_of(Array)
-    applied.all?{|e| e.is_a?(Ryodo::Rule)}.should be_true
+  it "#find_rules is empty if absolutely no rules could be found" do
+    obj = described_class.new(@query,["uk","us"])
+    rules = obj.find_rules
+
+    rules.should == []
+  end
+
+  it "#find_matches collects valid matches only" do
+    ruleset.find_rules
+    matches = ruleset.find_matches
+
+    matches.should be_kind_of(Array)
+    matches.all?{|e| e.is_a?(Ryodo::Match)}.should be_true
+    matches.none?{|e| e.is_a?(Ryodo::NoMatch)}.should be_true
+  end
+
+  it "#apply runs rule and match finder" do
+    ruleset.should_receive(:find_rules)
+    ruleset.should_receive(:find_matches)
+    ruleset.apply
   end
 
 end

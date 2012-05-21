@@ -26,8 +26,7 @@ module Ryodo
     end
 
     def get_rule_set
-
-      @rule_set = Ryodo::RuleSet.new(Ryodo::SuffixList.list, @query)
+      @rule_set = Ryodo::RuleSet.new(@query, Ryodo::SuffixList.list)
     end
 
   end
