@@ -19,7 +19,6 @@ require "ryodo/rule"
 require "ryodo/rule_set"
 require "ryodo/query"
 require "ryodo/match"
-require "ryodo/no_match"
 
 module Ryodo
   extend Ryodo::Methods
