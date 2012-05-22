@@ -6,32 +6,50 @@ module Ryodo
 
     def initialize item
       @item = item
-      self
+      @item << :needed unless @item.last[0] == "!"
     end
 
-    def match query
+    def query_mapper query
       query.map!{|e| e.to_s.downcase }
-      res = @item.map.with_index do |elem, index|
-        case elem
-        when "*"
-          !query[index].nil? ? :wildcard : false
-        when /^\!.*/
-          query[index] == elem[1..-1] ? :override : false
+      last_value = true
+      res = @item.map.with_index do |label, index|
+        this_value = if last_value # fails if previous label already failed
+          case label
+          when "*"
+            #!query[index].nil? && !query[index].nil? ? :wildcard : false
+            if query[index].nil? || query[index+1].nil?
+              false
+            else
+              :wildcard
+            end
+          when /^\!.*/
+            #query[index] == label[1..-1] ? :override : false
+            if query[index].nil?
+              false
+            elsif query[index] != label[1..-1]
+              :override_false
+            else
+              :override
+            end
+          when :needed
+            query[index].nil? ? false : :registered
+          else
+            query[index] == label
+          end
         else
-          query[index] == elem
+          false # following elements will always fail, of course
         end
+        last_value = this_value
       end
 
       # fill up to the length of query
       res = res.fill(:rest, res.length..(query.length-1)) if res.length < query.length
+      res
+    end
 
-      # matched = if res[1..-1].uniq.include?(false) || !res.include?(:rest)
-      #   Ryodo::Match.new(res, query)
-      # else
-      #   Ryodo::Match.new(res, query)
-      # end
-      # matched
-      Ryodo::Match.new(res, query)
+    def match query
+      mapper = query_mapper(query)
+      Ryodo::Match.new(@item, mapper, query)
     end
 
   end

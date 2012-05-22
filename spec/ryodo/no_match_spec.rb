@@ -1,1 +1,0 @@
-# Functionally tested via Ryodo::Rule!
