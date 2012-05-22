@@ -16,14 +16,12 @@ module Ryodo
         this_value = if last_value # fails if previous label already failed
           case label
           when "*"
-            #!query[index].nil? && !query[index].nil? ? :wildcard : false
             if query[index].nil? || query[index+1].nil?
               false
             else
               :wildcard
             end
           when /^\!.*/
-            #query[index] == label[1..-1] ? :override : false
             if query[index].nil?
               false
             elsif query[index] != label[1..-1]
@@ -43,6 +41,7 @@ module Ryodo
       end
 
       # fill up to the length of query
+      # (mappers have to be same length)
       res = res.fill(:rest, res.length..(query.length-1)) if res.length < query.length
       res
     end
