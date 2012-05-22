@@ -16,28 +16,32 @@ This is a convenient shorthand to [Ryodo.parse](#ryodo-module)
 dom = Ryodo("my.awesome.domain.co.jp")
 #=> Ryodo::Domain
 
-                  #  SUBDOMAIN  DOMAIN TLD
-dom.tld           #                   "co.jp"
-dom.regdomain     #            "domain.co.jp"
-dom.subdomain     # "my.awesome"
-dom.domain        # "my.awesome.domain.co.jp"
-dom.cookie_domain #            "domain.co.jp" - highest possible cookie domain
+                  #    SUBDOMAIN  DOMAIN   TLD
+dom.tld           #=>                   "co.jp"
+dom.regdomain     #=>            "domain.co.jp"
+dom.subdomain     #=> "my.awesome"
+dom.domain        #=> "my.awesome.domain.co.jp"
+dom.cookie_domain #=>            "domain.co.jp" - lowest possible cookie domain
 
 dom.fqdn
 #=> "my.awesome.domain.co.jp."
-# with trailing dot (root element)
+# with trailing dot (root element is last part = empty string)
 #   useful for DNS
 
-dom.fqdn_reversed
-#=> ".jp.co.domain.awesome.my"
-# FQDN in reversed order, with leading dot for root element
-#   useful for recursive resolvers (DNS)
-#   (or Java-like package naming ;o)
+# all parts also reversable
+# mostly used on domain/FQDN
+dom.domain(:reverse) #=> "my.awesome.domain.co.jp"
+dom.fqdn(:reverse)   #=> ".jp.co.domain.awesome.my"
 
 dom.regdomain.to_a     #=> ["domain","co","jp"]
 dom.subdomain.to_a     #=> ["my","awesome"]
 dom.domain.to_a        #=> ["my","awesome","domain","co","jp"]
-dom.fqdn_reversed.to_a #=> ["jp","co","domain","awesome","my"] - root element removed!
+dom.fqdn.to_a          #=> ["my","awesome","domain","co","jp",""]
+
+# .to_a also usable with parameter :reverse (or shorthand :r)
+dom.domain.to_a(:reverse) #=> ["jp","co","domain","awesome","my"]
+dom.fqdn.to_a(:reverse)   #=> ["","jp","co","domain","awesome","my"]
+dom.fqdn.to_a(:r)         #=> ["","jp","co","domain","awesome","my"]
 ```
 
 ## Ryodo (module)
