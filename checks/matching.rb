@@ -1,16 +1,20 @@
+#!/usr/bin/env ruby
 # encoding: utf-8
-$:<<"lib"
+$: << "lib"
 require "ryodo"
 
-def checkPublicSuffix query, result
+def checkPublicSuffix query, expectation
 
   q          = Ryodo::Query.new(query)
-  cleaned    = q.instance_variable_get(:@raw_query)
   m          = q.best_match
-  calculated = m.nil? ? "NULL" : m.result[:cookie].reverse.join(".")
-  passed     = (calculated==result) ? "  OK" : "FAIL"
+  calculated =  if m
+                  m.values[:domain].nil? ? "NULL" : m.values[:domain].reverse.join(".")
+                else
+                  "NULL"
+                end
+  passed     = (calculated==expectation) ? "  OK" : "FAIL"
 
-  puts "#{passed} === Q: #{query.ljust(20)} | EXPECTED: #{result.ljust(20)} | GOT: #{calculated.ljust(20)}"
+  puts "#{passed} === Q: #{query.ljust(20)} | #{expectation.rjust(20)} <=> #{calculated.ljust(20)}"
 end
 
 # NULL input.
@@ -32,10 +36,10 @@ checkPublicSuffix('example.example', 'NULL')
 checkPublicSuffix('b.example.example', 'NULL')
 checkPublicSuffix('a.b.example.example', 'NULL')
 # Listed, but non-Internet, TLD.
-#checkPublicSuffix('local', 'NULL')
-#checkPublicSuffix('example.local', 'NULL')
-#checkPublicSuffix('b.example.local', 'NULL')
-#checkPublicSuffix('a.b.example.local', 'NULL')
+checkPublicSuffix('local', 'NULL')
+checkPublicSuffix('example.local', 'NULL')
+checkPublicSuffix('b.example.local', 'NULL')
+checkPublicSuffix('a.b.example.local', 'NULL')
 # TLD with only 1 rule.
 checkPublicSuffix('biz', 'NULL')
 checkPublicSuffix('domain.biz', 'domain.biz')

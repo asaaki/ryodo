@@ -38,19 +38,26 @@ describe Ryodo::RuleSet do
     rules.should == []
   end
 
-  it "#find_matches collects valid matches only" do
-    ruleset.find_rules
-    matches = ruleset.find_matches
+  it "#matches collects valid matches only" do
+    matches = ruleset.matches
 
-    matches.should be_kind_of(Array)
-    matches.all?{|e| e.is_a?(Ryodo::Match)}.should be_true
-    matches.none?{|e| e.is_a?(Ryodo::NoMatch)}.should be_true
+    matches.should be_kind_of(Hash)
+    matches.keys.should include(:matches)
+    matches.keys.should include(:exception)
+    matches.keys.should include(:wildcard)
+    matches.keys.should include(:exact_suffix)
   end
 
-  it "#apply runs rule and match finder" do
-    ruleset.should_receive(:find_rules)
-    ruleset.should_receive(:find_matches)
-    ruleset.apply
+  # Ryodo::RuleSet#find_best_match is deeply checked via checks/matching.rb
+  # here only basic expecations are tested
+
+  it "#find_best_match returns a valid match" do
+    ruleset.find_best_match.should be_kind_of(Ryodo::Match)
+  end
+
+  it "#find_best_match returns nil, if no match was found" do
+    obj = described_class.new(["invalid","query"])
+    obj.find_best_match.should be_nil
   end
 
 end

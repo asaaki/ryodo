@@ -26,16 +26,12 @@ module Ryodo
       end
     end
 
-    def get_rule_set
-      @rule_set = Ryodo::RuleSet.new(@query, Ryodo::SuffixList.list)
-    end
-
-    def apply_rule_set
-      @matches = (@rule_set || get_rule_set).apply
+    def rule_set
+      @rule_set ||= Ryodo::RuleSet.new(@query, Ryodo::SuffixList.list)
     end
 
     def best_match
-      @result = (@matches || apply_rule_set).first
+      @result = rule_set.find_best_match
     end
 
   end
