@@ -5,12 +5,8 @@ require "ryodo"
 
 def checkPublicSuffix query, expectation
 
-  q          = Ryodo::Parser.run(query)
-  calculated =  if q
-                  q[1].nil? ? "NULL" : (q[0]+q[1]).reverse.join(".")
-                else
-                  "NULL"
-                end
+  q          = Ryodo[query]
+  calculated =  q.domain.nil? ? "NULL" : q.domain
   passed     = (calculated==expectation) ? "  OK" : "FAIL"
 
   puts "#{passed} === Q: #{query.ljust(20)} | #{expectation.rjust(20)} <=> #{calculated.ljust(20)}"

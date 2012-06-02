@@ -7,8 +7,8 @@ module Ryodo
       alias_method :ryodo, :Ryodo
 
       # Unicode junkie? ;o)
-      alias_method :"ryōdo", :Ryodo
-      alias_method :"領土", :Ryodo
+      alias_method :"ryōdo",  :Ryodo
+      alias_method :"領土",    :Ryodo
       alias_method :"りょうど", :Ryodo
 
     end

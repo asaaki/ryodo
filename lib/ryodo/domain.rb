@@ -3,11 +3,37 @@
 module Ryodo
   class Domain
 
-    # remove class comparison
+    # DomainString is a String with extended methods
+    class DomainString < String
+
+      def reverse
+        to_a(:r).join(".")
+      end
+      alias_method :r, :reverse
+
+      def to_a option = nil
+        case option
+        when :reverse, :r
+          dsplit.reverse
+        else
+          dsplit
+        end
+      end
+
+    private
+
+      def dsplit
+        self.split(".",-1)
+      end
+
+    end
+
+    # remove own class comparison (we will use String#== via method_missing)
     undef_method :==
 
     def initialize domainStr
-      @domain_string = domainStr.downcase
+      raise TypeError, "Not a valid domain string!" unless domainStr.is_a?(String)
+      @domain_string = DomainString.new domainStr.downcase
 
       parts = Ryodo::Parser.run(@domain_string)
 
@@ -17,21 +43,26 @@ module Ryodo
     end
 
     def suffix
-      @suffix
+      DomainString.new @suffix if @suffix
     end
     alias_method :tld, :suffix
 
     def domain
-      @domain
+      DomainString.new @domain if @domain
     end
     alias_method :registered_domain, :domain
+    alias_method :regdomain,         :domain
 
     def subdomain
-      @subdomain
+      DomainString.new @subdomain if @subdomain
+    end
+
+    def fqdn
+      DomainString.new "#{to_s}."
     end
 
     def to_s
-      @domain_string.to_s
+      @domain_string
     end
 
     def inspect

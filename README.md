@@ -4,44 +4,33 @@
 
 ----
 
-**r2 branch!**
-
-----
-
 This is a pure Ruby implementation of the [regdomr](https://github.com/asaaki/regdomr) gem, but with slightly different API.
 
 Without the Cext backend it should be also easily usable with Ruby implemenations like JRuby.
 
 _nothing to see here, check later…_
 
-## Ryodo (method)
-
-This is a convenient shorthand to [Ryodo.parse](#ryodo-module)
+## Usage
 
 ```ruby
-dom = Ryodo("my.awesome.domain.co.jp")
+dom = Ryodo.parse("my.awesome.domain.co.jp")
 #=> Ryodo::Domain
 
                   #    SUBDOMAIN  DOMAIN   TLD
-dom.tld           #=>                   "co.jp"
-dom.regdomain     #=>            "domain.co.jp"
-dom.subdomain     #=> "my.awesome"
-dom.domain        #=> "my.awesome.domain.co.jp"
-dom.cookie_domain #=>            "domain.co.jp" - lowest possible cookie domain
-
-dom.fqdn
-#=> "my.awesome.domain.co.jp."
-# with trailing dot (root element is last part = empty string)
-#   useful for DNS
+dom.tld           #=>                   "co.jp"  - returns only the public suffix
+dom.domain        #=>            "domain.co.jp"  - returns only registered/registrable domain
+dom.subdomain     #=> "my.awesome"               - returns only subdomain parts
+dom               #=> "my.awesome.domain.co.jp"  - returns full domain string
+dom.fqdn          #=> "my.awesome.domain.co.jp." - full domain + trailing dot
 
 # all parts also reversable
 # mostly used on domain/FQDN
-dom.domain(:reverse) #=> "my.awesome.domain.co.jp"
-dom.fqdn(:reverse)   #=> ".jp.co.domain.awesome.my"
+dom.reverse            #=> "my.awesome.domain.co.jp"
+dom.fqdn.reverse       #=> ".jp.co.domain.awesome.my"
 
-dom.regdomain.to_a     #=> ["domain","co","jp"]
+dom.to_a               #=> ["my","awesome","domain","co","jp"]
+dom.domain.to_a        #=> ["domain","co","jp"]
 dom.subdomain.to_a     #=> ["my","awesome"]
-dom.domain.to_a        #=> ["my","awesome","domain","co","jp"]
 dom.fqdn.to_a          #=> ["my","awesome","domain","co","jp",""]
 
 # .to_a also usable with parameter :reverse (or shorthand :r)
@@ -50,28 +39,34 @@ dom.fqdn.to_a(:reverse)   #=> ["","jp","co","domain","awesome","my"]
 dom.fqdn.to_a(:r)         #=> ["","jp","co","domain","awesome","my"]
 ```
 
-## Ryodo (module)
+You can call it in different ways:
 
-**Ryodo.parse(…)** does the same as [`Ryodo(…)`](#ryodo-method)
+```ruby
+Ryodo.parse("my.awesome.domain.co.jp")
+Ryodo("my.awesome.domain.co.jp")
+Ryodo["my.awesome.domain.co.jp"]
+ryodo("my.awesome.domain.co.jp")
 
-`Ryodo[…]` - alias for `Ryodo.parse`
+# String extension
+"my.awesome.domain.co.jp".to_domain
+"my.awesome.domain.co.jp".ryodo
+```
 
-## Ryodo::Domain
+UTF-8 junkie? ;o)
 
-The internal representation of a parsed domain string by `Ryodo.parse`.
-
-## Ryodo::SuffixList
-
-This is the interface for the public suffix list.
-
-## Ryodo::SuffixListFetcher
-
-Used to fetch a recent version of the public suffix list.
-Mostly you don't need to, because the list won't change so often.
-
-It's a helper for me to update if necessary.
-So this module isn't automatically required when using this gem.
+```ruby
+# encoding: utf-8
+ryōdo("my.awesome.domain.co.jp")
+領土("my.awesome.domain.co.jp")
+りょうど("my.awesome.domain.co.jp")
+```
 
 ## Foo …
 
 "Uh, excuse me Sir … just one more question." — Columbo (Peter Falk †)
+
+## License
+
+MIT/X11 — see `LICENSE.txt`
+
+(c) 2012 Christoph Grabo

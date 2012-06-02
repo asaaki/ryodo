@@ -13,12 +13,15 @@ module Ryodo
 end
 
 require "ryodo/domain"
-require "ryodo/methods"
 require "ryodo/parser"
 require "ryodo/rule"
 require "ryodo/rule_set"
 require "ryodo/suffix_list"
 
+require "ryodo/methods"
+require "ryodo/ext/string"
+
+# Convenient shorthands
 module Ryodo
   extend Ryodo::Methods
   require "ryodo/convenience"
