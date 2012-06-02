@@ -8,12 +8,7 @@ module Ryodo
     end
 
     def build_query domain
-      if domain.to_s[0] == "."
-        # FQDN in reversed order
-        domain.downcase[1..-1].split(".")
-      else
-        domain.downcase.split(".").reverse
-      end
+      domain.split(".").reverse
     end
 
     def parse domain

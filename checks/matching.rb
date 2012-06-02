@@ -23,8 +23,6 @@ checkPublicSuffix('.com', 'NULL')
 checkPublicSuffix('.example', 'NULL')
 checkPublicSuffix('.example.com', 'NULL')
 checkPublicSuffix('.example.example', 'NULL')
-# Leading dot for reversed FQDN
-checkPublicSuffix('.com.example', 'example.com')
 # Unlisted TLD.
 checkPublicSuffix('example', 'NULL')
 checkPublicSuffix('example.example', 'NULL')

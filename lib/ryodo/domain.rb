@@ -34,12 +34,13 @@ module Ryodo
     def initialize domainStr
       raise TypeError, "Not a valid domain string!" unless domainStr.is_a?(String)
       @domain_string = DomainString.new domainStr.downcase
+      no_leading_dot = @domain_string[0] != "."
 
       parts = Ryodo::Parser.run(@domain_string)
 
-      @suffix    = parts ? parts[0].reverse.join(".") : nil
-      @domain    = parts && !parts[1].empty? ? (parts[0] + parts[1]).reverse.join(".") : nil
-      @subdomain = parts && !parts[2].empty? ? (parts[2]).reverse.join(".") : nil
+      @suffix    = no_leading_dot && parts                     ? parts[0].reverse.join(".")              : nil
+      @domain    = no_leading_dot && parts && !parts[1].empty? ? (parts[0] + parts[1]).reverse.join(".") : nil
+      @subdomain = no_leading_dot && parts && !parts[2].empty? ? (parts[2]).reverse.join(".")            : nil
     end
 
     def suffix
