@@ -8,7 +8,7 @@ This is a pure Ruby implementation of the [regdomr](https://github.com/asaaki/re
 
 Without the Cext backend it should be also easily usable with Ruby implemenations like JRuby.
 
-_nothing to see here, check later…_
+**Works only with Ruby 1.9.x!**
 
 ## Usage
 
