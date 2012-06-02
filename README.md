@@ -27,7 +27,7 @@ dom.fqdn          #=> "my.awesome.domain.co.jp." - full domain + trailing dot
 
 # all parts also reversable
 # mostly used on domain/FQDN
-dom.reverse            #=> "my.awesome.domain.co.jp"
+dom.reverse            #=> "jp.co.domain.awesome.my"
 dom.fqdn.reverse       #=> ".jp.co.domain.awesome.my"
 
 dom.to_a               #=> ["my","awesome","domain","co","jp"]
