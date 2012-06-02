@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ryodo"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
     "lib/ryodo/rule_set.rb",
     "lib/ryodo/suffix_list.rb",
     "lib/ryodo/suffix_list_fetcher.rb",
+    "ryodo.gemspec",
     "spec/_files/mozilla_effective_tld_names.dat",
     "spec/ryodo/suffix_list_fetcher_spec.rb",
     "spec/ryodo/suffix_list_spec.rb",
