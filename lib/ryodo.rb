@@ -20,6 +20,7 @@ require "ryodo/suffix_list"
 
 require "ryodo/methods"
 require "ryodo/ext/string"
+#require "ryodo/ext/uri"
 
 # Convenient shorthands
 module Ryodo

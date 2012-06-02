@@ -10,6 +10,8 @@ Without the Cext backend it should be also easily usable with Ruby implemenation
 
 **Works only with Ruby 1.9.x!** (I dropped all support for 1.8.x)
 
+
+
 ## Usage
 
 ```ruby
@@ -52,7 +54,7 @@ ryodo("my.awesome.domain.co.jp")
 "my.awesome.domain.co.jp".ryodo
 ```
 
-UTF-8 junkie? ;o)
+### UTF-8 junkie?
 
 ```ruby
 # encoding: utf-8
@@ -60,6 +62,32 @@ ryōdo("my.awesome.domain.co.jp")
 領土("my.awesome.domain.co.jp")
 りょうど("my.awesome.domain.co.jp")
 ```
+
+### Extension of URI
+
+```ruby
+require "regdomr/uri"
+
+uri = URI.parse("http://my.awesome.domain.jp:5555/path")
+uri.host
+#=> "my.awesome.domain.jp"
+
+uri.host.class
+#=> Ryodo::Domain
+# but decorates the String class transparently
+
+uri.host.domain
+#=> "domain.com"
+```
+
+In Gemfile:
+
+```ruby
+gem "ryodo", :require => ["ryodo","ryodo/ext/uri"]
+```
+
+
+
 ## Benchmark
 
 There is another gem called [public_suffix](https://github.com/weppos/public_suffix_service), which does nearly the same (maybe with more features I don't need).
@@ -132,13 +160,19 @@ As you can see, Ryodo is more than **10 times faster**.
 _(Funfact: My first approach was 6 times slower — improvement factor of 60!)_
 
 
+
+
 ## TODO
 
 Lot of specs missing, this first version of second approach was developed in playground mode. ;o)
 
+
+
 ## Foo …
 
 "Uh, excuse me Sir … just one more question." — Columbo (Peter Falk †)
+
+
 
 ## License
 
