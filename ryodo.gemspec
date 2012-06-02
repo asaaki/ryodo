@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ryodo"
-  s.version = "0.0.3"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
     "lib/ryodo/convenience/.u.rb",
     "lib/ryodo/domain.rb",
     "lib/ryodo/ext/string.rb",
+    "lib/ryodo/ext/uri.rb",
     "lib/ryodo/methods.rb",
     "lib/ryodo/parser.rb",
     "lib/ryodo/rule.rb",
