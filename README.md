@@ -2,6 +2,12 @@
 
 **ryōdo【領土】 りょうど — A domain name parser**
 
+----
+
+**r2 branch!**
+
+----
+
 This is a pure Ruby implementation of the [regdomr](https://github.com/asaaki/regdomr) gem, but with slightly different API.
 
 Without the Cext backend it should be also easily usable with Ruby implemenations like JRuby.

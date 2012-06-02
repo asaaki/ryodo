@@ -5,10 +5,9 @@ require "ryodo"
 
 def checkPublicSuffix query, expectation
 
-  q          = Ryodo::Query.new(query)
-  m          = q.best_match
-  calculated =  if m
-                  m.values[:domain].nil? ? "NULL" : m.values[:domain].reverse.join(".")
+  q          = Ryodo::Parser.run(query)
+  calculated =  if q
+                  q[1].nil? ? "NULL" : (q[0]+q[1]).reverse.join(".")
                 else
                   "NULL"
                 end

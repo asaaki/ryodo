@@ -14,11 +14,10 @@ end
 
 require "ryodo/domain"
 require "ryodo/methods"
-require "ryodo/suffix_list"
+require "ryodo/parser"
 require "ryodo/rule"
 require "ryodo/rule_set"
-require "ryodo/query"
-require "ryodo/match"
+require "ryodo/suffix_list"
 
 module Ryodo
   extend Ryodo::Methods

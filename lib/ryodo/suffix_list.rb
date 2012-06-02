@@ -4,7 +4,7 @@ module Ryodo
 
   class SuffixList
     def initialize suffix_file = Ryodo::PUBLIC_SUFFIX_STORE
-      load_file(suffix_file) && true
+      load_file(suffix_file)
     end
 
     def parse_data
@@ -38,10 +38,6 @@ module Ryodo
 
       def list
         instance.list
-      end
-
-      def get_tld tld
-        instance.get_tld tld
       end
 
       def instance

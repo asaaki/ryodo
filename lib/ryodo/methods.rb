@@ -4,7 +4,7 @@ module Ryodo
   module Methods
 
     def parse domain_string
-      puts domain_string
+      Ryodo::Domain.new domain_string
     end
     alias_method :[], :parse
 

@@ -1,70 +1,77 @@
 # encoding: utf-8
 
 module Ryodo
-
   class RuleSet
 
-    def initialize query, list = SuffixList.list
-      @query = query
-      @list  = list
+    def initialize
+      @tree = {}
+      build!
     end
 
-    def find_rules
-      # preselect list items for matching first element
-      # this is to reduce possible rule matching overhead
-      # especially on very short queries
-      list_items = @list.select do |elem|
-        elem.first == @query.first
+    def build!
+
+      Ryodo::SuffixList.list.each do |line|
+
+        line.each.with_index do |node_name, idx|
+
+          stopOK = node_name == line.last
+          exception = node_name[0] == "!"
+          node_name = node_name[1..-1] if exception
+          children = {}
+
+          node = Ryodo::Rule.new(exception, stopOK, children)
+
+          if idx > 0
+            end_idx = idx - 1
+            parent = select_rule(line[0..end_idx])
+            parent.children[node_name] = node unless parent.children[node_name]
+
+          else
+            @tree[node_name] = node unless @tree[node_name]
+          end
+
+        end
+
       end
 
-      @rules = list_items.map do |elem|
-        Ryodo::Rule.new(elem)
+    end
+
+    def select_rule(rule_path)
+
+      path = rule_path.dup
+
+      if current = path.pop
+
+        if path.empty?
+          @tree[current]
+
+        else
+          rule = select_rule(path)
+          rule.children[current] if rule
+        end
+
       end
+
     end
 
-    def rules
-      @rules ||= find_rules
-    end
+    def match(path)
+      suffix, domain, match = [], [], nil
 
-    def find_matches
-      all_matches   = self.rules.map{ |rule| rule.match @query }
-
-      valid_matches = all_matches.select{ |match| match.valid? }
-
-      real_matches  = valid_matches.select{ |match| match.match? }
-      exception     = valid_matches.select{ |match| match.exception? }
-      wildcard      = valid_matches.select{ |match| match.wildcard? }
-      exact_suffix  = valid_matches.select{ |match| match.exact_suffix? }
-
-      match_set = {}
-      match_set[:matches]    = real_matches
-      match_set[:exception]  = exception.first # should always be a single element
-      match_set[:wildcard]   = wildcard.first # should always be a single element
-      match_set[:exact_suffix] = exact_suffix
-
-      match_set
-    end
-
-    def matches
-      @matches ||= find_matches
-    end
-
-    def find_best_match
-      eventual_best = matches[:matches].sort.last
-
-      if    matches[:exception] && !matches[:exception].match? && eventual_best != matches[:exception]
-        nil
-      elsif matches[:exception] == eventual_best
-        eventual_best
-      elsif matches[:wildcard]  && !matches[:wildcard].match?  && eventual_best != matches[:wildcard]
-        nil
-      elsif !matches[:exact_suffix].empty? #&& eventual_best == matches[:exact_suffix]
-        nil
-      else
-        eventual_best
+      until match || path.empty?
+        match = select_rule(path) || select_rule(path.dup.fill("*",-1))
+        match = nil if match && !match.is_suffix?
+        domain.unshift path.pop
+        suffix = path
       end
+
+      suffix.push(domain.shift) if match && !match.exception
+
+      # only if match has no children with domain and domain is present
+      if match && !match.children.keys.include?(domain[0]) && domain[0]
+        [ suffix, [domain.shift], domain ]
+      end
+
     end
 
   end
-
 end

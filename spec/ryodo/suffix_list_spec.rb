@@ -45,45 +45,6 @@ describe Ryodo::SuffixList do
       described_class.list.any?{|e|e.is_a?(Array)}.should be_true
     end
 
-    # it ".get_tld returns an array of all matching rules for the specified TLD" do
-    #   tld = "uk"
-    #   list = described_class.get_tld(tld)
-
-    #   list.should be_kind_of(Array)
-    #   described_class.list.any?{|e|e[0] == tld}.should be_true
-    # end
-
-    # it ".get_tld handles symbols, too" do
-    #   tld = :uk
-    #   list = described_class.get_tld(tld)
-
-    #   list.should be_kind_of(Array)
-    #   described_class.list.any?{|e|e[0] == tld}.should be_true
-    # end
-
-    # it ".get_tld is case insensitive" do
-    #   tld = "cOm"
-    #   list = described_class.get_tld(tld)
-
-    #   list.should be_kind_of(Array)
-    #   described_class.list.any?{|e|e[0] == tld}.should be_true
-    # end
-
-    # it ".get_tld returns nil if no matching TLD was found" do
-    #   tld = "invalidTLD"
-    #   list = described_class.get_tld(tld)
-
-    #   list.should be_nil
-    # end
-
-    # it ".get_tld can retrieve multipart TLDs like co.uk." do
-    #   tld = "co.uk"
-    #   list = described_class.get_tld(tld)
-
-    #   list.should be_kind_of(Array)
-    #   described_class.list.any?{|e|e[0] == tld}.should be_true
-    # end
-
   end
 
 end
