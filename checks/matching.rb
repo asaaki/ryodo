@@ -9,7 +9,7 @@ def checkPublicSuffix query, expectation
   calculated =  q.domain.nil? ? "NULL" : q.domain
   passed     = (calculated==expectation) ? "  OK" : "FAIL"
 
-  puts "#{passed} === Q: #{query.ljust(20)} | #{expectation.rjust(20)} <=> #{calculated.ljust(20)}"
+  puts "#{passed} === Q: #{query.ljust(26)} | #{expectation.rjust(16)} <=> #{calculated.ljust(16)}"
 end
 
 # NULL input.
@@ -23,6 +23,11 @@ checkPublicSuffix('.com', 'NULL')
 checkPublicSuffix('.example', 'NULL')
 checkPublicSuffix('.example.com', 'NULL')
 checkPublicSuffix('.example.example', 'NULL')
+#Trailing dot (FQDN).
+checkPublicSuffix('com.', 'NULL')
+checkPublicSuffix('example.com.', 'example.com')
+checkPublicSuffix('www.example.com.', 'example.com')
+checkPublicSuffix('www.subdomain.example.com.', 'example.com')
 # Unlisted TLD.
 checkPublicSuffix('example', 'NULL')
 checkPublicSuffix('example.example', 'NULL')

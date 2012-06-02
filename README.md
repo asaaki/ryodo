@@ -8,7 +8,7 @@ This is a pure Ruby implementation of the [regdomr](https://github.com/asaaki/re
 
 Without the Cext backend it should be also easily usable with Ruby implemenations like JRuby.
 
-**Works only with Ruby 1.9.x!**
+**Works only with Ruby 1.9.x!** (I dropped every support for 1.8.x)
 
 ## Usage
 
@@ -60,6 +60,81 @@ ryōdo("my.awesome.domain.co.jp")
 領土("my.awesome.domain.co.jp")
 りょうど("my.awesome.domain.co.jp")
 ```
+## Benchmark
+
+There is another gem called [public_suffix](https://github.com/weppos/public_suffix_service), which does nearly the same (maybe with more features I don't need).
+
+So I did a tiny benchmark.
+
+**Setup**
+
+A domain input list, taken by publicsuffix.org (checkPublicSuffix test script under [publicsuffix.org/list/](http://publicsuffix.org/list/)).
+
+Some of them are also invalid (to test, if you implementation works correctly).
+
+I added some very long domain names with many parts (for look-up time scale).
+
+Finally 72 entries to check.
+
+Ruby: 1.9.3-p194, no special patches
+
+We only do a basic parsing and retrieve the registered/registrable domain. (Should hit the most important code of the gems.)
+
+**Test script snippet**
+
+```ruby
+# DOMAINS is the array of domain entries - shuffled on every benchmark run
+
+LOOPS = 1_000
+
+Benchmark.bmbm do |b|
+
+  b.report "ryodo" do
+    LOOPS.times do
+      DOMAINS.each do |domain|
+        Ryodo.parse(domain).domain # returns nil if not valid
+      end
+    end
+  end
+
+  b.report "public_suffix" do
+    LOOPS.times do
+      DOMAINS.each do |domain|
+        PublicSuffix.parse(domain).domain rescue nil # it raises if not valid in any way, so we rescue it
+      end
+    end
+  end
+
+end
+```
+
+**Caveats**
+
+`PublicSuffix.parse(…)` will raise errors if domain input is invalid (e.g. not a registrable domain).
+
+`Ryodo.parse(…)` won't raise but return nil values for invalid stuff (it only raises if input is not a String, of course).
+
+**Result**
+
+```
+Rehearsal -------------------------------------------------
+ryodo           1.800000   0.000000   1.800000 (  1.809521)
+public_suffix  21.880000   0.020000  21.900000 ( 21.907808)
+--------------------------------------- total: 23.700000sec
+
+                    user     system      total        real
+ryodo           1.770000   0.000000   1.770000 (  1.769734)
+public_suffix  22.320000   0.010000  22.330000 ( 22.346013)
+```
+
+As you can see, Ryodo is more than **10 times faster**.
+
+_(Funfact: My first approach was 6 times slower — improvement factor of 60!)_
+
+
+## TODO
+
+Lot of specs missing, this first version of second approach was developed in playground mode. ;o)
 
 ## Foo …
 

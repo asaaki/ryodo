@@ -9,7 +9,6 @@ module Ryodo
     end
 
     def build!
-
       Ryodo::SuffixList.list.each do |line|
 
         line.each.with_index do |node_name, idx|
@@ -33,11 +32,9 @@ module Ryodo
         end
 
       end
-
     end
 
     def select_rule(rule_path)
-
       path = rule_path.dup
 
       if current = path.pop
@@ -51,7 +48,6 @@ module Ryodo
         end
 
       end
-
     end
 
     def match(path)
@@ -70,7 +66,6 @@ module Ryodo
       if match && !match.children.keys.include?(domain[0]) && domain[0]
         [ suffix, [domain.shift], domain ]
       end
-
     end
 
   end

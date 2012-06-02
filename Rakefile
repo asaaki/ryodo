@@ -51,6 +51,7 @@ end
 desc "Fetch and save public suffix data (task for updates)"
 task :fetch_data do
   require "ryodo"
+  require "ryodo/suffix_list_fetcher"
   Ryodo::SuffixListFetcher.fetch_and_save!
 end
 
