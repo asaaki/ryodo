@@ -66,7 +66,7 @@ ryōdo("my.awesome.domain.co.jp")
 ### Extension of URI
 
 ```ruby
-require "regdomr/uri"
+require "ryodo/ext/uri"
 
 uri = URI.parse("http://my.awesome.domain.jp:5555/path")
 uri.host
