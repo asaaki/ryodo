@@ -1,6 +1,6 @@
 # ryodo [![](https://secure.travis-ci.org/asaaki/ryodo.png)](http://travis-ci.org/asaaki/ryodo)
 
-**ryōdo【領土】 りょうど — A domain name parser**
+**ryōdo【領土】 りょうど — A domain name parser using public suffix list**
 
 ----
 

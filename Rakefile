@@ -19,8 +19,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ryodo"
   gem.homepage = "http://github.com/asaaki/ryodo"
   gem.license = "MIT"
-  gem.summary = %Q{ryōdo【領土】 りょうど — A domain name parser}
-  gem.description = %Q{ryōdo【領土】 りょうど — A domain name parser gem}
+  gem.summary = %Q{ryōdo【領土】 りょうど — A domain name parser using public suffix list}
+  gem.description = %Q{ryōdo【領土】 りょうど — A domain name parser gem using public suffix list (provided by publicsuffix.org/mozilla)}
   gem.email = "chris@dinarrr.com"
   gem.authors = ["Christoph Grabo"]
   # dependencies defined in Gemfile
