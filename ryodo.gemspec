@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "ryodo"
-  s.version = "0.1.0"
+  s.version = "0.1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
-  s.date = "2012-06-02"
-  s.description = "ry\u{14d}do\u{3010}\u{9818}\u{571f}\u{3011} \u{308a}\u{3087}\u{3046}\u{3069} \u{2014} A domain name parser gem"
+  s.date = "2012-06-04"
+  s.description = "ry\u{14d}do\u{3010}\u{9818}\u{571f}\u{3011} \u{308a}\u{3087}\u{3046}\u{3069} \u{2014} A domain name parser gem using public suffix list (provided by publicsuffix.org/mozilla)"
   s.email = "chris@dinarrr.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
-  s.summary = "ry\u{14d}do\u{3010}\u{9818}\u{571f}\u{3011} \u{308a}\u{3087}\u{3046}\u{3069} \u{2014} A domain name parser"
+  s.summary = "ry\u{14d}do\u{3010}\u{9818}\u{571f}\u{3011} \u{308a}\u{3087}\u{3046}\u{3069} \u{2014} A domain name parser using public suffix list"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
