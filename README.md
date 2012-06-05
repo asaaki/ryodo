@@ -59,6 +59,12 @@ require "ryodo/ext/string"
 "my.awesome.domain.co.jp".ryodo
 ```
 
+In Gemfile:
+
+```ruby
+gem "ryodo", :require => ["ryodo", "ryodo/ext/string"]
+```
+
 ### UTF-8 junkie?
 
 ```ruby
@@ -88,7 +94,7 @@ uri.host.domain
 In Gemfile:
 
 ```ruby
-gem "ryodo", :require => ["ryodo", "ryodo/ext/string", "ryodo/ext/uri"]
+gem "ryodo", :require => ["ryodo", "ryodo/ext/uri"]
 ```
 
 
