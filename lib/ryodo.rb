@@ -19,7 +19,7 @@ require "ryodo/rule_set"
 require "ryodo/suffix_list"
 
 require "ryodo/methods"
-require "ryodo/ext/string"
+#require "ryodo/ext/string"
 #require "ryodo/ext/uri"
 
 # Convenient shorthands

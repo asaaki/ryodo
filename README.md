@@ -48,8 +48,13 @@ Ryodo.parse("my.awesome.domain.co.jp")
 Ryodo("my.awesome.domain.co.jp")
 Ryodo["my.awesome.domain.co.jp"]
 ryodo("my.awesome.domain.co.jp")
+```
 
-# String extension
+### String extension
+
+```ruby
+require "ryodo/ext/string"
+
 "my.awesome.domain.co.jp".to_domain
 "my.awesome.domain.co.jp".ryodo
 ```
@@ -83,7 +88,7 @@ uri.host.domain
 In Gemfile:
 
 ```ruby
-gem "ryodo", :require => ["ryodo","ryodo/ext/uri"]
+gem "ryodo", :require => ["ryodo", "ryodo/ext/string", "ryodo/ext/uri"]
 ```
 
 
