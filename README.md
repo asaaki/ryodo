@@ -21,6 +21,7 @@ dom = Ryodo.parse("my.awesome.domain.co.jp")
                   #    SUBDOMAIN  DOMAIN   TLD
 dom.tld           #=>                   "co.jp"  - returns only the public suffix
 dom.domain        #=>            "domain.co.jp"  - returns only registered/registrable domain
+dom.sld           #=>            "domain"        - returns only registered/registrable domain name w/o TLD
 dom.subdomain     #=> "my.awesome"               - returns only subdomain parts
 dom               #=> "my.awesome.domain.co.jp"  - returns full domain string
 dom.fqdn          #=> "my.awesome.domain.co.jp." - full domain + trailing dot
@@ -32,6 +33,7 @@ dom.fqdn.reverse       #=> ".jp.co.domain.awesome.my"
 
 dom.to_a               #=> ["my","awesome","domain","co","jp"]
 dom.domain.to_a        #=> ["domain","co","jp"]
+dom.sld.to_a           #=> ["domain"]
 dom.subdomain.to_a     #=> ["my","awesome"]
 dom.fqdn.to_a          #=> ["my","awesome","domain","co","jp",""]
 
@@ -50,6 +52,22 @@ Ryodo["my.awesome.domain.co.jp"]
 ryodo("my.awesome.domain.co.jp")
 ```
 
+
+### Quick check (.valid_domain?)
+
+```ruby
+Ryodo.domain_valid?("my.awesome.domain.co.jp") #=> true
+Ryodo.domain_valid?("co.jp")                   #=> false
+
+# aliases
+Ryodo.domain_valid?("my.awesome.domain.co.jp")
+Ryodo.valid?("my.awesome.domain.co.jp")
+Ryodo?("my.awesome.domain.co.jp")
+ryodo?("my.awesome.domain.co.jp")
+valid_domain?("my.awesome.domain.co.jp")
+```
+
+
 ### String extension
 
 ```ruby
@@ -57,6 +75,9 @@ require "ryodo/ext/string"
 
 "my.awesome.domain.co.jp".to_domain
 "my.awesome.domain.co.jp".ryodo
+
+# validation
+"my.awesome.domain.co.jp".valid_domain?
 ```
 
 In Gemfile:
@@ -65,16 +86,26 @@ In Gemfile:
 gem "ryodo", :require => ["ryodo", "ryodo/ext/string"]
 ```
 
+
 ### UTF-8 junkie?
 
 ```ruby
 # encoding: utf-8
+require "ryodo/convenience/utf8"
+
 ryōdo("my.awesome.domain.co.jp")
 領土("my.awesome.domain.co.jp")
 りょうど("my.awesome.domain.co.jp")
+
+ryōdo?("my.awesome.domain.co.jp")
+領土?("my.awesome.domain.co.jp")
+りょうどか("my.awesome.domain.co.jp")
 ```
 
+
 ### Extension of URI
+
+Ryodo can transparently hook into URI, so you can use every described method on `.host`.
 
 ```ruby
 require "ryodo/ext/uri"
@@ -89,6 +120,11 @@ uri.host.class
 
 uri.host.domain
 #=> "domain.com"
+
+# awesome quick check before doing further stuff with URI
+# because why you would do a request to an URI with obviously invalid domain?
+uri.host.is_valid?
+#=> true
 ```
 
 In Gemfile:
