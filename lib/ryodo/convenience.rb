@@ -7,6 +7,10 @@ module Ryodo
       Ryodo.parse(domain_string)
     end
 
+    def Ryodo?(domain_string)
+      Ryodo.valid?(domain_string)
+    end
+
   end
 end
 
