@@ -8,5 +8,10 @@ module Ryodo
     end
     alias_method :[], :parse
 
+    def domain_valid? domain_string
+      parsed = self.parse(domain_string)
+      !!parsed.tld && !!parsed.domain
+    end
+
   end
 end
