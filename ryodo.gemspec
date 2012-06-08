@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ryodo"
-  s.version = "0.2.0"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
     "data/suffix.dat",
     "lib/ryodo.rb",
     "lib/ryodo/convenience.rb",
-    "lib/ryodo/convenience/.u.rb",
+    "lib/ryodo/convenience/utf8.rb",
     "lib/ryodo/domain.rb",
     "lib/ryodo/ext/string.rb",
     "lib/ryodo/ext/uri.rb",
