@@ -26,5 +26,5 @@ require "ryodo/methods"
 module Ryodo
   extend Ryodo::Methods
   require "ryodo/convenience"
-  require "ryodo/convenience/.u" unless Kernel.const_defined?("RYODO_NO_U") || ENV['RYODO_NO_U']
 end
+#require "ryodo/convenience/utf8"
