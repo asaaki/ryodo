@@ -62,6 +62,10 @@ module Ryodo
       DomainString.new "#{to_s}."
     end
 
+    def is_valid?
+      !!@suffix && !!@secondary
+    end
+
     def to_s
       @domain_string
     end

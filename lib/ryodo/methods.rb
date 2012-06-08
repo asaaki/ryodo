@@ -9,8 +9,7 @@ module Ryodo
     alias_method :[], :parse
 
     def domain_valid? domain_string
-      parsed = self.parse(domain_string)
-      !!parsed.tld && !!parsed.domain
+      self.parse(domain_string).is_valid?
     end
     alias_method :valid_domain?, :domain_valid?
 
