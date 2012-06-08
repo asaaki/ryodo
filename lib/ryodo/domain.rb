@@ -72,6 +72,7 @@ module Ryodo
     def is_valid?
       !!@suffix && !!@secondary
     end
+    alias_method :valid?, :is_valid?
 
     def to_s
       @domain_string
