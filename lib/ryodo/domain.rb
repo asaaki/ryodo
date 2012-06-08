@@ -38,8 +38,9 @@ module Ryodo
 
       parts = Ryodo::Parser.run(@domain_string)
 
-      @suffix    = no_leading_dot && parts                     ? parts[0].reverse.join(".")              : nil
+      @suffix    = no_leading_dot && parts                     ?  parts[0].reverse.join(".")             : nil
       @domain    = no_leading_dot && parts && !parts[1].empty? ? (parts[0] + parts[1]).reverse.join(".") : nil
+      @secondary = no_leading_dot && parts && !parts[1].empty? ?  parts[1].first                         : nil
       @subdomain = no_leading_dot && parts && !parts[2].empty? ? (parts[2]).reverse.join(".")            : nil
     end
 
@@ -53,6 +54,12 @@ module Ryodo
     end
     alias_method :registered_domain, :domain
     alias_method :regdomain,         :domain
+
+    def second_level
+      DomainString.new @secondary if @secondary
+    end
+    alias_method :sld,             :second_level
+    alias_method :registered_name, :second_level
 
     def subdomain
       DomainString.new @subdomain if @subdomain
