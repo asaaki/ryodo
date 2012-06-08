@@ -12,6 +12,7 @@ module Ryodo
       parsed = self.parse(domain_string)
       !!parsed.tld && !!parsed.domain
     end
+    alias_method :valid_domain?, :domain_valid?
 
   end
 end
