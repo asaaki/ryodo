@@ -35,18 +35,12 @@ module Ryodo
     end
 
     def select_rule(rule_path)
-      path = rule_path.dup
-
-      if current = path.pop
-
-        if path.empty?
-          @tree[current]
-
+      if rule_path[-1]
+        if rule_path[0..-2].empty?
+          @tree[rule_path[-1]]
         else
-          rule = select_rule(path)
-          rule.children[current] if rule
+          rule = select_rule(rule_path[0..-2]) and rule.children[rule_path[-1]]
         end
-
       end
     end
 
