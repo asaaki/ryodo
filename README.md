@@ -53,14 +53,14 @@ ryodo("my.awesome.domain.co.jp")
 ```
 
 
-### Quick check (.valid_domain?)
+### Quick check (.domain_valid?)
 
 ```ruby
 Ryodo.domain_valid?("my.awesome.domain.co.jp") #=> true
 Ryodo.domain_valid?("co.jp")                   #=> false
 
 # aliases
-Ryodo.domain_valid?("my.awesome.domain.co.jp")
+Ryodo.valid_domain?("my.awesome.domain.co.jp")
 Ryodo.valid?("my.awesome.domain.co.jp")
 Ryodo?("my.awesome.domain.co.jp")
 ryodo?("my.awesome.domain.co.jp")
