@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "ryodo"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
-  s.date = "2012-06-08"
+  s.date = "2013-02-01"
   s.description = "ry\u{14d}do\u{3010}\u{9818}\u{571f}\u{3011} \u{308a}\u{3087}\u{3046}\u{3069} \u{2014} A domain name parser gem using public suffix list (provided by publicsuffix.org/mozilla)"
   s.email = "chris@dinarrr.com"
   s.extra_rdoc_files = [
@@ -18,10 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
-    ".rbenv-gemsets",
-    ".rbenv-version",
     ".rspec",
-    ".ruby-version",
     ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
