@@ -1,4 +1,4 @@
-# encoding: utf-8
+# coding: utf-8
 require "ryodo/suffix_list_fetcher"
 require File.expand_path("../../spec_helper.rb", __FILE__)
 

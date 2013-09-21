@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
+# coding: utf-8
 $: << "lib"
 require "ryodo"
 

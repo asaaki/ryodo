@@ -90,7 +90,7 @@ gem "ryodo", :require => ["ryodo", "ryodo/ext/string"]
 ### UTF-8 junkie?
 
 ```ruby
-# encoding: utf-8
+# coding: utf-8
 require "ryodo/convenience/utf8"
 
 ryōdo("my.awesome.domain.co.jp")
