@@ -13,12 +13,11 @@ module Ryodo
 
         line.each.with_index do |node_name, idx|
 
-          stopOK = node_name == line.last
+          stopOK    = node_name == line.last
           exception = node_name[0] == "!"
           node_name = node_name[1..-1] if exception
-          children = {}
-
-          node = Ryodo::Rule.new(exception, stopOK, children)
+          children  = {}
+          node      = Ryodo::Rule.new(exception, stopOK, children)
 
           if idx > 0
             end_idx = idx - 1
@@ -48,8 +47,8 @@ module Ryodo
       suffix, domain, match = [], [], nil
 
       until match || path.empty?
-        match = select_rule(path) || select_rule(path.dup.fill("*",-1))
-        match = nil if match && !match.is_suffix?
+        match  = select_rule(path) || select_rule(path.dup.fill("*",-1))
+        match  = nil if match && !match.is_suffix?
         domain.unshift path.pop
         suffix = path
       end
