@@ -2,6 +2,7 @@
 
 $:.push(File.expand_path("../../lib", __FILE__))
 
+require "fileutils"
 require "fakeweb"
 require "uri"
 require "ryodo"
@@ -22,7 +23,7 @@ end
 RYODO_SPEC_ROOT = File.expand_path("..", __FILE__)
 RYODO_TMP_ROOT  = File.expand_path("../../tmp/spec", __FILE__)
 
-Dir.mkdir RYODO_TMP_ROOT unless File.exists?(RYODO_TMP_ROOT)
+FileUtils.mkdir_p RYODO_TMP_ROOT unless File.exists?(RYODO_TMP_ROOT)
 
 FakeWeb.register_uri(:get,
   Ryodo::PUBLIC_SUFFIX_DATA_URI,
