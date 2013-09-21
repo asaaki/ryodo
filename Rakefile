@@ -13,6 +13,7 @@ require "rake"
 require "rspec"
 require "rspec/core/rake_task"
 
+
 desc "Starts IRB with gem loaded"
 task :irb do
   sh "irb -I lib -r ryodo"
@@ -23,11 +24,13 @@ task :pry do
   sh "pry -I lib -r ryodo --no-pager"
 end
 
+
 desc "Run all specs"
 task RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
   t.verbose = false
 end
+
 
 desc "Fetch and save public suffix data (task for updates)"
 task :fetch_data do
@@ -36,5 +39,33 @@ task :fetch_data do
   require "ryodo/suffix_list_fetcher"
   Ryodo::SuffixListFetcher.fetch_and_save!
 end
+
+
+namespace :gem do
+  $: << "lib"
+  require "ryodo/version"
+
+  task :tag do
+    system "git tag -f v#{Ryodo::VERSION} && git push --tags -f"
+  end
+
+  task :build do
+    system "rm *.gem"
+    system "gem build ryodo.gemspec"
+  end
+
+  task :push => "gem:build" do
+    system "gem push ryodo-#{Ryodo::VERSION}.gem"
+  end
+
+  task :clean do
+    system "rm *.gem"
+  end
+
+  desc "Publish gem to rubygems.org"
+  task :publish => ["gem:tag","gem:push","gem:clean"]
+
+end
+
 
 task :default => :spec
