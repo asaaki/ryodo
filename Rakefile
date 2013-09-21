@@ -12,6 +12,7 @@ end
 require "rake"
 require "rspec"
 require "rspec/core/rake_task"
+require "bundler/gem_tasks"
 
 
 desc "Starts IRB with gem loaded"
@@ -38,33 +39,6 @@ task :fetch_data do
   require "ryodo"
   require "ryodo/suffix_list_fetcher"
   Ryodo::SuffixListFetcher.fetch_and_save!
-end
-
-
-namespace :gem do
-  $: << "lib"
-  require "ryodo/version"
-
-  task :tag do
-    system "git tag -f v#{Ryodo::VERSION} && git push --tags -f"
-  end
-
-  task :build do
-    system "rm *.gem"
-    system "gem build ryodo.gemspec"
-  end
-
-  task :push => "gem:build" do
-    system "gem push ryodo-#{Ryodo::VERSION}.gem"
-  end
-
-  task :clean do
-    system "rm *.gem"
-  end
-
-  desc "Publish gem to rubygems.org"
-  task :publish => ["gem:tag","gem:push","gem:clean"]
-
 end
 
 
