@@ -56,7 +56,7 @@ module Ryodo
       suffix.push(domain.shift) if match && !match.exception
 
       # only if match has no children with domain and domain is present
-      if match && !match.children.keys.include?(domain[0]) && domain[0]
+      if match && domain[0] && !match.children.keys.include?(domain[0])
         [ suffix, [domain.shift], domain ]
       end
     end
