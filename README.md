@@ -139,7 +139,7 @@ gem "ryodo", :require => ["ryodo", "ryodo/ext/uri"]
 
 ## Benchmark
 
-There is another gem called [public_suffix](https://github.com/weppos/public_suffix_service), which does nearly the same (maybe with more features I don't need).
+There is another gem called [public_suffix](https://github.com/weppos/publicsuffix-ruby), which does nearly the same (maybe with more features I don't need).
 
 So I did a tiny benchmark.
 
@@ -151,41 +151,11 @@ Some of them are also invalid (to test, if you implementation works correctly).
 
 I added some very long domain names with many parts (for look-up time scale).
 
-Finally 72 entries to check.
-
-Ruby: 1.9.3-p194, no special patches
-
 We only do a basic parsing and retrieve the registered/registrable domain. (Should hit the most important code of the gems.)
 
-**Test script snippet**
+The benchmark script can be found at [checks/benchmark.rb (branch: prof)](./blob/prof/checks/benchmark.rb).
 
-```ruby
-# DOMAINS is the array of domain entries - shuffled on every benchmark run
-
-LOOPS = 1_000
-
-Benchmark.bmbm do |b|
-
-  b.report "ryodo" do
-    LOOPS.times do
-      DOMAINS.each do |domain|
-        Ryodo.parse(domain).domain # returns nil if not valid
-      end
-    end
-  end
-
-  b.report "public_suffix" do
-    LOOPS.times do
-      DOMAINS.each do |domain|
-        PublicSuffix.parse(domain).domain rescue nil # it raises if not valid in any way, so we rescue it
-      end
-    end
-  end
-
-end
-```
-
-**Caveats**
+**Notes**
 
 `PublicSuffix.parse(…)` will raise errors if domain input is invalid (e.g. not a registrable domain).
 
@@ -194,20 +164,29 @@ end
 **Result**
 
 ```
-Rehearsal -------------------------------------------------
-ryodo           1.800000   0.000000   1.800000 (  1.809521)
-public_suffix  21.880000   0.020000  21.900000 ( 21.907808)
---------------------------------------- total: 23.700000sec
+Benchmark of domain parsing
+===========================
 
-                    user     system      total        real
-ryodo           1.770000   0.000000   1.770000 (  1.769734)
-public_suffix  22.320000   0.010000  22.330000 ( 22.346013)
+Number of loops: 1000
+Number of items per loop: 76
+
+Rehearsal ---------------------------------------------------
+ryodo             2.020000   0.000000   2.020000 (  2.019358)
+public_suffix    76.490000   0.030000  76.520000 ( 76.581529)
+----------------------------------------- total: 78.540000sec
+
+                      user     system      total        real
+ryodo             2.030000   0.000000   2.030000 (  2.025765)
+public_suffix    75.270000   0.070000  75.340000 ( 75.406074)
+
+Ryodo vs. PublicSuffix
+
+Ryodo is 37.22 times faster than PublicSuffix.
+
 ```
 
-As you can see, Ryodo is more than **10 times faster**.
-
-_(Funfact: My first approach was 6 times slower — improvement factor of 60!)_
-
+Interestingly the public_suffix gem got even slower over time (or ruby versions)
+compared to my first benchmark (<http://codecraft.io/2012/06/02/ryodo-domain-parser/>).
 
 
 
