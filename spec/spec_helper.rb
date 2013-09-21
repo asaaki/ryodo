@@ -20,7 +20,7 @@ RSpec::Matchers.define :include_hash do |expected|
 end
 
 RYODO_SPEC_ROOT = File.expand_path("..", __FILE__)
-RYODO_TMP_ROOT  = File.expand_path("../../tmp", __FILE__)
+RYODO_TMP_ROOT  = File.expand_path("../../tmp/spec", __FILE__)
 
 Dir.mkdir RYODO_TMP_ROOT unless File.exists?(RYODO_TMP_ROOT)
 
