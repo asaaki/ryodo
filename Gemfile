@@ -1,12 +1,15 @@
-source :rubygems
+source "https://rubygems.org"
 
 group :development do
   gem "rake"
   gem "bundler"
   gem "jeweler"
-  gem "rspec"
-  gem "fakeweb"
 
   gem "pry"
   gem "pry-doc"
+end
+
+group :development, :test do
+  gem "rspec"
+  gem "fakeweb"
 end
