@@ -37,8 +37,9 @@ describe Ryodo::SuffixListFetcher do
     it "#fetch_data retrieves remote data" do
       fetcher.fetch_data
 
-      fetcher.instance_variable_get("@fetched_data").should be_kind_of(Enumerator)
       fetcher.instance_variable_get("@fetched_data").first.should =~ /BEGIN LICENSE BLOCK/
+      fetcher.instance_variable_get("@fetched_data").first.should =~ /BEGIN ICANN DOMAINS/
+      fetcher.instance_variable_get("@fetched_data").first.should =~ /BEGIN PRIVATE DOMAINS/
     end
 
     it "#save_data stores fetched data into file (as cleaned set)" do
