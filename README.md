@@ -240,3 +240,7 @@ Lot of specs missing, this first version of second approach was developed in pla
 MIT/X11 — see [`LICENSE`](./LICENSE)
 
 (c) 2012—2013 Christoph Grabo
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/asaaki/ryodo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
