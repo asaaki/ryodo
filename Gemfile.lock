@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ryodo (0.2.4.1)
+    ryodo (0.2.5)
 
 GEM
   remote: https://rubygems.org/
