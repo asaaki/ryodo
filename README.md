@@ -166,7 +166,32 @@ The benchmark script can be found at [checks/benchmark.rb (branch: prof)](./blob
 **Results**
 
 ```
-Ruby: MRI 2.0.0-p247
+Ruby: MRI 2.1.0p0
+ryodo (0.2.6)
+public_suffix (1.3.3)
+Machine: AMD Phenom(tm) II X6 1090T, 6 cores, 3.2 GHz; 8 GB RAM
+Linux 3.12.7-1-ARCH x86_64 GNU/Linux
+
+Benchmark of domain parsing
+===========================
+
+Number of loops: 1000
+Number of items per loop: 100
+
+Rehearsal ---------------------------------------------------
+ryodo             2.110000   0.000000   2.110000 (  2.122766)
+public_suffix    72.460000   0.020000  72.480000 ( 72.517502)
+----------------------------------------- total: 74.590000sec
+
+                      user     system      total        real
+ryodo             2.130000   0.000000   2.130000 (  2.132354)
+public_suffix    72.000000   2.220000  74.220000 ( 74.272943)
+
+Ryodo is 34.83 times faster than PublicSuffix.
+```
+
+```
+Ruby: MRI 2.0.0p247
 ryodo (0.2.4.1)
 public_suffix (1.3.1)
 Machine: AMD Phenom(tm) II X6 1090T, 6 cores, 3.2 GHz; 8 GB RAM
@@ -191,31 +216,6 @@ Ryodo vs. PublicSuffix
 
 Ryodo is 29.46 times faster than PublicSuffix.
 
-```
-
-```
-Ruby: MRI 1.9.3-p448
-ryodo (0.2.4.1)
-public_suffix (1.3.1)
-Machine: AMD Phenom(tm) II X6 1090T, 6 cores, 3.2 GHz; 8 GB RAM
-Linux 3.10.9-1-ARCH x86_64 GNU/Linux
-
-Benchmark of domain parsing
-===========================
-
-Number of loops: 1000
-Number of items per loop: 100
-
-Rehearsal ---------------------------------------------------
-ryodo             2.640000   0.000000   2.640000 (  2.642131)
-public_suffix    80.710000   0.010000  80.720000 ( 80.770868)
------------------------------------------ total: 83.360000sec
-
-                      user     system      total        real
-ryodo             2.670000   0.000000   2.670000 (  2.664983)
-public_suffix    80.930000   0.020000  80.950000 ( 80.998667)
-
-Ryodo is 30.39 times faster than PublicSuffix.
 ```
 
 Interestingly the public_suffix gem got even slower over time (and/or ruby versions)
