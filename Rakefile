@@ -1,7 +1,4 @@
 # coding: utf-8
-require "rubygems"
-require "bundler"
-Bundler.setup(:default, :development)
 require "rspec/core/rake_task"
 require "bundler/gem_tasks"
 
@@ -16,6 +13,14 @@ desc "Run all specs"
 task RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
   t.verbose = false
+end
+
+
+namespace :spec do
+  desc "Fetch mozilla_effective_tld_names.dat for specs"
+  task :fetch_data do
+    system "wget http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat\?raw\=1 -O spec/_files/mozilla_effective_tld_names.dat"
+  end
 end
 
 
