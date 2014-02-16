@@ -1,4 +1,3 @@
-TOKYO
 ac
 ac.com
 ac.edu
@@ -7,6 +6,7 @@ ac.mil
 ac.net
 ac.org
 academy
+actor
 ad
 ad.nom
 ae
@@ -119,6 +119,7 @@ ag.com
 ag.net
 ag.nom
 ag.org
+agency
 ai
 ai.com
 ai.net
@@ -209,9 +210,11 @@ au.sa
 au.tas
 au.vic
 au.wa
+autos
 aw
 aw.com
 ax
+axa
 az
 az.biz
 az.com
@@ -236,6 +239,8 @@ ba.org
 ba.rs
 ba.unbi
 ba.unsa
+bar
+bargains
 bb
 bb.biz
 bb.com
@@ -249,7 +254,9 @@ bd.*
 be
 be.ac
 be.blogspot
+beer
 berlin
+best
 bf
 bf.gov
 bg
@@ -301,6 +308,7 @@ bi.com
 bi.edu
 bi.or
 bi.org
+bid
 bike
 biz
 biz.dyndns
@@ -315,6 +323,8 @@ bj.asso
 bj.barreau
 bj.blogspot
 bj.gouv
+black
+blackfriday
 blue
 bm
 bm.com
@@ -333,6 +343,7 @@ bo.mil
 bo.net
 bo.org
 bo.tv
+boutique
 br
 br.adm
 br.adv
@@ -416,6 +427,7 @@ bt.edu
 bt.gov
 bt.net
 bt.org
+budapest
 build
 builders
 business
@@ -456,9 +468,13 @@ ca.yk
 cab
 camera
 camp
+caravan
+cards
 career
 careers
+casa
 cat
+catering
 cc
 cc.ftpaccess
 cc.game-server
@@ -473,6 +489,8 @@ cf.blogspot
 cg
 ch
 ch.blogspot
+cheap
+christmas
 ci
 ci.ac
 ci.asso
@@ -496,6 +514,7 @@ cl.co
 cl.gob
 cl.gov
 cl.mil
+cleaning
 clothing
 club
 cm
@@ -561,6 +580,7 @@ co.rec
 co.web
 codes
 coffee
+college
 com
 com.amazonaws.compute
 com.amazonaws.compute-1
@@ -777,13 +797,20 @@ com.teaches-yoga
 com.uk
 com.us
 com.uy
+com.withgoogle
 com.writesthisblog
 com.za
+community
 company
 computer
+condos
 construction
+consulting
 contractors
+cooking
+cool
 coop
+country
 cr
 cr.ac
 cr.co
@@ -792,6 +819,7 @@ cr.fi
 cr.go
 cr.or
 cr.sa
+cruises
 cu
 cu.com
 cu.edu
@@ -813,6 +841,7 @@ cy.*
 cz
 cz.blogspot
 dance
+dating
 de
 de.blogspot
 de.com
@@ -823,6 +852,7 @@ de.lebtimnetz
 de.leitungsen
 de.traeumtgerade
 democrat
+desi
 diamonds
 directory
 dj
@@ -834,6 +864,7 @@ dm.edu
 dm.gov
 dm.net
 dm.org
+dnp
 do
 do.art
 do.com
@@ -905,16 +936,25 @@ es.org
 estate
 et.*
 eu
+eus
+events
+expert
+exposed
 farm
+feedback
 fi
 fi.aland
 fi.blogspot
 fi.iki
+fish
+fishing
 fj.*
 fk.*
+flights
 florist
 fm
 fo
+foundation
 fr
 fr.aeroport
 fr.assedic
@@ -940,6 +980,7 @@ fr.prd
 fr.presse
 fr.tm
 fr.veterinaire
+frogans
 futbol
 ga
 gal
@@ -959,6 +1000,7 @@ gg
 gg.co
 gg.net
 gg.org
+ggee
 gh
 gh.com
 gh.edu
@@ -975,6 +1017,7 @@ gi.org
 gift
 gl
 glass
+globo
 gm
 gn
 gn.ac
@@ -983,6 +1026,7 @@ gn.edu
 gn.gov
 gn.net
 gn.org
+gop
 gov
 gp
 gp.asso
@@ -1011,12 +1055,14 @@ gt.net
 gt.org
 gu.*
 guide
+guitars
 guru
 gw
 gy
 gy.co
 gy.com
 gy.net
+haus
 hk
 hk.blogspot
 hk.com
@@ -1050,6 +1096,8 @@ hn.net
 hn.org
 holdings
 holiday
+homes
+horse
 house
 hr
 hr.com
@@ -1148,6 +1196,7 @@ in.net
 in.nic
 in.org
 in.res
+industries
 info
 info.barrel-of-knowledge
 info.barrell-of-knowledge
@@ -1159,6 +1208,7 @@ info.here-for-more
 info.knowsitall
 info.selfip
 info.webhop
+ink
 institute
 int
 int.eu
@@ -1474,6 +1524,7 @@ je
 je.co
 je.net
 je.org
+jetzt
 jm.*
 jo
 jo.com
@@ -3318,6 +3369,8 @@ kr.re
 kr.sc
 kr.seoul
 kr.ulsan
+krd
+kred
 kw.*
 ky
 ky.com
@@ -3342,6 +3395,7 @@ la.int
 la.net
 la.org
 la.per
+lacaixa
 land
 lb
 lb.com
@@ -3359,6 +3413,7 @@ lc.org
 li
 lighting
 limo
+link
 lk
 lk.assn
 lk.com
@@ -3374,6 +3429,7 @@ lk.org
 lk.sch
 lk.soc
 lk.web
+london
 lr
 lr.com
 lr.edu
@@ -3386,6 +3442,7 @@ ls.org
 lt
 lt.gov
 lu
+luxe
 luxury
 lv
 lv.asn
@@ -3414,6 +3471,7 @@ ma.gov
 ma.net
 ma.org
 ma.press
+maison
 management
 mango
 marketing
@@ -3430,6 +3488,7 @@ me.its
 me.net
 me.org
 me.priv
+meet
 menu
 mg
 mg.com
@@ -3441,7 +3500,9 @@ mg.org
 mg.prd
 mg.tm
 mh
+miami
 mil
+mini
 mk
 mk.com
 mk.edu
@@ -3474,6 +3535,9 @@ mobi
 moda
 moe
 monash
+mormon
+moscow
+motorcycles
 mp
 mq
 mr
@@ -4113,9 +4177,12 @@ nc.asso
 ne
 net
 net.at-band-camp
+net.azure-mobile
+net.azurewebsites
 net.blogdns
 net.broke-it
 net.buyshouses
+net.cloudapp
 net.cloudfront
 net.dnsalias
 net.dnsdojo
@@ -4159,6 +4226,8 @@ net.thruhere
 net.uk
 net.webhop
 net.za
+network
+neustar
 nf
 nf.arts
 nf.com
@@ -4951,12 +5020,14 @@ nr.gov
 nr.info
 nr.net
 nr.org
+nrw
 nu
 nu.merseine
 nu.mine
 nu.shacknet
 nz.*
 nz.co.blogspot
+okinawa
 om
 om.co
 om.com
@@ -5025,6 +5096,7 @@ org.us
 org.webhop
 org.za
 otsuka
+ovh
 pa
 pa.abo
 pa.ac
@@ -5037,6 +5109,8 @@ pa.net
 pa.nom
 pa.org
 pa.sld
+partners
+parts
 pe
 pe.com
 pe.edu
@@ -5059,8 +5133,10 @@ ph.mil
 ph.net
 ph.ngo
 ph.org
+photo
 photography
 photos
+pics
 pink
 pk
 pk.biz
@@ -5281,6 +5357,7 @@ pr.net
 pr.org
 pr.pro
 pr.prof
+praxi
 pro
 pro.aca
 pro.bar
@@ -5289,6 +5366,8 @@ pro.eng
 pro.jur
 pro.law
 pro.med
+productions
+properties
 ps
 ps.com
 ps.edu
@@ -5307,6 +5386,7 @@ pt.net
 pt.nome
 pt.org
 pt.publ
+pub
 pw
 pw.belau
 pw.co
@@ -5331,6 +5411,8 @@ qa.name
 qa.net
 qa.org
 qa.sch
+qpon
+quebec
 re
 re.asso
 re.blogspot
@@ -5338,8 +5420,13 @@ re.com
 re.nom
 recipes
 red
+ren
+rentals
 repair
+report
+rest
 reviews
+rich
 ro
 ro.arts
 ro.blogspot
@@ -5353,6 +5440,8 @@ ro.rec
 ro.store
 ro.tm
 ro.www
+rocks
+rodeo
 rs
 rs.ac
 rs.co
@@ -5505,6 +5594,7 @@ rw.gov
 rw.int
 rw.mil
 rw.net
+ryukyu
 sa
 sa.com
 sa.edu
@@ -5514,6 +5604,7 @@ sa.net
 sa.org
 sa.pub
 sa.sch
+saarland
 sb
 sb.com
 sb.edu
@@ -5592,6 +5683,7 @@ sh.gov
 sh.mil
 sh.net
 sh.org
+shiksha
 shoes
 si
 singles
@@ -5618,6 +5710,7 @@ so.com
 so.net
 so.org
 social
+sohu
 solar
 solutions
 sr
@@ -5635,6 +5728,8 @@ st.principe
 st.saotome
 st.store
 su
+supplies
+supply
 support
 sv
 sv.com
@@ -5672,6 +5767,7 @@ th.in
 th.mi
 th.net
 th.or
+tienda
 tips
 tj
 tj.ac
@@ -5730,6 +5826,8 @@ to.mil
 to.net
 to.org
 today
+tokyo
+tools
 tp
 tr.!nic
 tr.*
@@ -6129,6 +6227,7 @@ uz.com
 uz.net
 uz.org
 va
+vacations
 vc
 vc.com
 vc.edu
@@ -6147,6 +6246,7 @@ ve.mil
 ve.net
 ve.org
 ve.web
+vegas
 ventures
 vg
 vi
@@ -6156,6 +6256,8 @@ vi.k12
 vi.net
 vi.org
 viajes
+villas
+vision
 vn
 vn.ac
 vn.biz
@@ -6169,14 +6271,20 @@ vn.name
 vn.net
 vn.org
 vn.pro
+vodka
+vote
 voting
+voto
 voyage
 vu
 wang
+watch
 wed
 wf
 wien
 wiki
+work
+works
 ws
 ws.com
 ws.dyndns
@@ -6185,14 +6293,23 @@ ws.gov
 ws.mypets
 ws.net
 ws.org
+wtc
 xxx
+xyz
+yachts
 ye.*
+yokohama
 yt
 za.*
 zm.*
+zone
 zw.*
+дети
 мон
+москва
 онлайн
+орг
+рус
 рф
 сайт
 срб
@@ -6222,6 +6339,7 @@ zw.*
 مليسيا
 موقع
 भारत
+संगठन
 বাংলা
 ভারত
 ਭਾਰਤ
@@ -6240,15 +6358,26 @@ zw.*
 中國
 中文网
 企业
+佛山
+八卦
+公司
 公益
 台湾
 台灣
+商城
+商店
+商标
 在线
+广东
 我爱你
 政务
 新加坡
+机构
 游戏
 移动
+组织机构
+网址
+网络
 臺灣
 集团
 香港
