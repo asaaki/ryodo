@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Ryodo::VERSION
   spec.authors       = ["Christoph Grabo"]
   spec.email         = ["chris@dinarrr.com"]
-  spec.description   = %q{ryōdo【領土】 りょうど — A domain name parser gem using public suffix list (provided by publicsuffix.org/mozilla)}
+  spec.description   = %q{ryōdo【領土】 りょうど — A domain name parser gem using public suffix list (provided by publicsuffix.org / mozilla)}
   spec.summary       = %q{ryōdo【領土】 りょうど — A domain name parser using public suffix list}
   spec.homepage      = "http://github.com/asaaki/ryodo"
   spec.license       = "MIT"
