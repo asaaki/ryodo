@@ -2,7 +2,7 @@
 
 module Ryodo
   RYODO_ROOT             = File.expand_path("../..", __FILE__)
-  PUBLIC_SUFFIX_DATA_URI = "http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat?raw=1"
+  PUBLIC_SUFFIX_DATA_URI = "https://publicsuffix.org/list/effective_tld_names.dat"
   PUBLIC_SUFFIX_STORE    = "#{RYODO_ROOT}/data/suffix.dat"
 end
 

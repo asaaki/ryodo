@@ -10,12 +10,15 @@ module Ryodo
   class SuffixListFetcher
 
     def initialize uri = Ryodo::PUBLIC_SUFFIX_DATA_URI, store = Ryodo::PUBLIC_SUFFIX_STORE
-      @uri = URI(uri)
+      @uri = URI.parse(uri)
       @store = store
     end
 
     def fetch_data
-      res = Net::HTTP.get_response(@uri)
+      http = Net::HTTP.new(@uri.host, @uri.port)
+      http.use_ssl = true if @uri.scheme == 'https'
+      request = Net::HTTP::Get.new(@uri.request_uri)
+      res = http.request(request)
       raise Ryodo::FetchError, "Could not fetch suffix data! (#{res})" unless res.is_a?(Net::HTTPSuccess)
       @fetched_data = res.body.lines
     end
