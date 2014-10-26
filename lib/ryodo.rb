@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Ryodo
   RYODO_ROOT             = File.expand_path("../..", __FILE__)
   PUBLIC_SUFFIX_DATA_URI = "https://publicsuffix.org/list/effective_tld_names.dat"
@@ -15,12 +13,12 @@ require "ryodo/rule_set"
 require "ryodo/suffix_list"
 
 require "ryodo/methods"
-#require "ryodo/ext/string"
-#require "ryodo/ext/uri"
+# require "ryodo/ext/string"
+# require "ryodo/ext/uri"
 
 # Convenient shorthands
 module Ryodo
   extend Ryodo::Methods
   require "ryodo/convenience"
 end
-#require "ryodo/convenience/utf8"
+# require "ryodo/convenience/utf8"

@@ -1,8 +1,5 @@
-# coding: utf-8
-
 module Ryodo
   class RuleSet
-
     def initialize
       @tree = {}
       build!
@@ -10,26 +7,21 @@ module Ryodo
 
     def build!
       Ryodo::SuffixList.list.each do |line|
-
         line.each.with_index do |node_name, idx|
-
-          stopOK    = node_name == line.last
+          stop_ok   = node_name == line.last
           exception = node_name[0] == "!"
           node_name = node_name[1..-1] if exception
           children  = {}
-          node      = Ryodo::Rule.new(exception, stopOK, children)
+          node      = Ryodo::Rule.new(exception, stop_ok, children)
 
           if idx > 0
             end_idx = idx - 1
-            parent = select_rule(line[0..end_idx])
+            parent  = select_rule(line[0..end_idx])
             parent.children[node_name] = node unless parent.children[node_name]
-
           else
             @tree[node_name] = node unless @tree[node_name]
           end
-
         end
-
       end
     end
 
@@ -60,6 +52,5 @@ module Ryodo
         [ suffix, [domain.shift], domain ]
       end
     end
-
   end
 end

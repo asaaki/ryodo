@@ -1,8 +1,6 @@
-# coding: utf-8
-require File.expand_path("../../spec_helper.rb", __FILE__)
+require "spec_helper"
 
 describe Ryodo::SuffixList do
-
   context "singleton" do
 
     it "cannot be instanciated via #new" do
@@ -14,25 +12,23 @@ describe Ryodo::SuffixList do
       described_class.send(:"SuffixList")
     end
 
-    it "instance check" do
-      o1 = described_class
-      o2 = described_class
-
-      o1.should == o2
-    end
-
     it "has .instance" do
-      described_class.methods.should include(:"instance")
+      expect(described_class.methods).to include(:instance)
     end
 
+    it "instance check" do
+      o1 = described_class.instance
+      o2 = described_class.instance
+
+      expect(o1).to be o2
+    end
   end
 
   context "methods" do
-
-    let(:described_instance){ described_class.instance }
+    let(:described_instance) { described_class.instance }
 
     it ".reload can retrieve a fresh suffix list" do
-      described_instance.should_receive(:load_file).and_return(true)
+      expect(described_instance).to receive(:load_file).and_return(true)
       described_class.reload
     end
 
@@ -41,10 +37,10 @@ describe Ryodo::SuffixList do
     end
 
     it ".list returns an array of arrays" do
-      described_class.list.should be_kind_of(Array)
-      described_class.list.any?{|e|e.is_a?(Array)}.should be_true
+      expect(described_class.list).to be_an(Array)
+      expect(
+        described_class.list.all? { |e| e.is_a?(Array) }
+      ).to be true
     end
-
   end
-
 end

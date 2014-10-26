@@ -1,13 +1,11 @@
 #!/usr/bin/env ruby
-# coding: utf-8
-$: << "lib"
+$LOAD_PATH << "lib"
 require "ryodo"
 
-def checkPublicSuffix query, expectation
-
-  q          = Ryodo[query]
-  calculated =  q.domain.nil? ? "NULL" : q.domain
-  passed     = (calculated==expectation) ? "  OK" : "FAIL"
+def checkPublicSuffix(query, expectation)
+  query      = Ryodo[query]
+  calculated = query.domain.nil? ? "NULL" : query.domain
+  passed     = calculated == expectation ? "  OK" : "FAIL"
 
   puts "#{passed} === Q: #{query.ljust(26)} | #{expectation.rjust(16)} <=> #{calculated.ljust(16)}"
 end
