@@ -1,6 +1,11 @@
 # ryodo
 
-[![gem version](https://badge.fury.io/rb/ryodo.png)](http://badge.fury.io/rb/ryodo) [![build status](https://secure.travis-ci.org/asaaki/ryodo.png)](http://travis-ci.org/asaaki/ryodo) [![dev dependency status](https://gemnasium.com/asaaki/ryodo.png)](https://gemnasium.com/asaaki/ryodo) [![code climate](https://codeclimate.com/github/asaaki/ryodo.png)](https://codeclimate.com/github/asaaki/ryodo) [![coverage status](https://coveralls.io/repos/asaaki/ryodo/badge.png?branch=master)](https://coveralls.io/r/asaaki/ryodo?branch=master)
+[![gem version](https://badge.fury.io/rb/ryodo.png)](http://badge.fury.io/rb/ryodo)
+[![build status](https://secure.travis-ci.org/asaaki/ryodo.png)](http://travis-ci.org/asaaki/ryodo)
+[![dev dependency status](https://gemnasium.com/asaaki/ryodo.png)](https://gemnasium.com/asaaki/ryodo)
+[![code climate](https://codeclimate.com/github/asaaki/ryodo.png)](https://codeclimate.com/github/asaaki/ryodo)
+[![coverage status](https://coveralls.io/repos/asaaki/ryodo/badge.png?branch=master)](https://coveralls.io/r/asaaki/ryodo?branch=master)
+[![Support via Gratipay](http://img.shields.io/gratipay/asaaki.svg)](https://gratipay.com/asaaki)
 
 **ryōdo【領土】 りょうど — A domain name parser using public suffix list**
 
@@ -237,6 +242,6 @@ Lot of specs missing, this first version of second approach was developed in pla
 
 ## License
 
-MIT/X11 — see [`LICENSE`](./LICENSE)
+[MIT/X11](./LICENSE)
 
-(c) 2012—2014 Christoph Grabo
+2012—2014 Christoph Grabo
