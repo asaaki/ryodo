@@ -1,6 +1,12 @@
 if ENV["TRAVIS"] || ENV["CI"]
+  require "codeclimate-test-reporter"
   require "coveralls"
-  Coveralls.wear!
+
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    Coveralls::SimpleCov::Formatter,
+    CodeClimate::TestReporter::Formatter
+  ]
+  SimpleCov.start
 end
 
 require "fileutils"
