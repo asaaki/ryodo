@@ -3,11 +3,11 @@ module Ryodo
     def children?
       !children.empty?
     end
-    alias :has_children? :children?
+    alias_method :has_children?, :children?
 
     def suffix?
       stop_ok
     end
-    alias :is_suffix? :suffix?
+    alias_method :is_suffix?, :suffix?
   end
 end

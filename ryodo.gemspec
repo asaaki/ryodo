@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://github.com/asaaki/ryodo"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = []
   spec.test_files    = spec.files.grep(/\A(test|spec|features)\//)
   spec.require_paths = ["lib"]

@@ -8,7 +8,7 @@ end
 
 desc "Run all specs"
 task RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = 'spec/**/*_spec.rb'
+  t.pattern = "spec/**/*_spec.rb"
   t.verbose = false
 end
 
@@ -21,7 +21,7 @@ end
 
 desc "Fetch and save public suffix data (task for updates)"
 task :fetch_data do
-  $: << "lib"
+  $LOAD_PATH << "lib"
   require "ryodo"
   require "ryodo/suffix_list_fetcher"
   Ryodo::SuffixListFetcher.fetch_and_save!

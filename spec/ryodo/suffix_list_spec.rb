@@ -5,7 +5,7 @@ RSpec.describe Ryodo::SuffixList do
 
   context "singleton" do
     it "cannot be instanciated via #new" do
-      expect{ subject.new }.to raise_error
+      expect { subject.new }.to raise_error
     end
 
     it "creates instance by calling the class itself" do

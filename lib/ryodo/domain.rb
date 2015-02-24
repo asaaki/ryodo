@@ -2,7 +2,6 @@ module Ryodo
   class Domain
     # DomainString is a String with extended methods
     class DomainString < String
-
       def reverse
         to_a(:r).join(".")
       end
@@ -20,7 +19,7 @@ module Ryodo
       private
 
       def dsplit
-        self.split(".", -1)
+        split(".", -1)
       end
     end
 
@@ -62,7 +61,7 @@ module Ryodo
     end
 
     def fqdn
-      DomainString.new("#{to_s}.")
+      DomainString.new("#{self}.")
     end
 
     def valid?

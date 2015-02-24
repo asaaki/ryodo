@@ -39,7 +39,7 @@ module Ryodo
       suffix, domain, match = [], [], nil
 
       until match || path.empty?
-        match  = select_rule(path) || select_rule(path.dup.fill("*",-1))
+        match  = select_rule(path) || select_rule(path.dup.fill("*", -1))
         match  = nil if match && !match.is_suffix?
         domain.unshift path.pop
         suffix = path
@@ -49,7 +49,7 @@ module Ryodo
 
       # only if match has no children with domain and domain is present
       if match && domain[0] && !match.children.keys.include?(domain[0])
-        [ suffix, [domain.shift], domain ]
+        [suffix, [domain.shift], domain]
       end
     end
   end
