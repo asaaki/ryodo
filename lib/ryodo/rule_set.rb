@@ -5,6 +5,15 @@ module Ryodo
       build
     end
 
+    def match(path)
+      suffix, domain, match = find_match_parts(path, [], [], nil)
+      suffix.push(domain.shift) if match && !match.exception
+      # only if match has no children with domain and domain is present
+      [suffix, [domain.shift], domain] if match && domain[0] && !match.children.keys.include?(domain[0])
+    end
+
+    private
+
     def build
       Ryodo::SuffixList.list.each { |line| build_line(line) }
     end
@@ -41,13 +50,6 @@ module Ryodo
       else
         (rule = select_rule(rule_path[0..-2])) && rule.children[rule_path[-1]]
       end
-    end
-
-    def match(path)
-      suffix, domain, match = find_match_parts(path, [], [], nil)
-      suffix.push(domain.shift) if match && !match.exception
-      # only if match has no children with domain and domain is present
-      [suffix, [domain.shift], domain] if match && domain[0] && !match.children.keys.include?(domain[0])
     end
 
     def find_match_parts(path, suffix, domain, rule_match)
