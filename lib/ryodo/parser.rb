@@ -14,11 +14,11 @@ module Ryodo
 
     class << self
       def run(domain)
-        instance.parse domain
+        instance.parse(domain)
       end
 
       def instance
-        @@instance ||= new
+        @instance ||= new
       end
     end
   end

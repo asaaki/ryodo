@@ -5,6 +5,7 @@ module Ryodo
       build!
     end
 
+    # rubocop:disable all
     def build!
       Ryodo::SuffixList.list.each do |line|
         line.each.with_index do |node_name, idx|
@@ -24,17 +25,18 @@ module Ryodo
         end
       end
     end
+    # rubocop:enable all
 
     def select_rule(rule_path)
-      if rule_path[-1]
-        if rule_path[0..-2].empty?
-          @tree[rule_path[-1]]
-        else
-          rule = select_rule(rule_path[0..-2]) and rule.children[rule_path[-1]]
-        end
+      return unless rule_path[-1]
+      if rule_path[0..-2].empty?
+        @tree[rule_path[-1]]
+      else
+        (rule = select_rule(rule_path[0..-2])) && rule.children[rule_path[-1]]
       end
     end
 
+    # rubocop:disable all
     def match(path)
       suffix, domain, match = [], [], nil
 
@@ -52,5 +54,6 @@ module Ryodo
         [suffix, [domain.shift], domain]
       end
     end
+    # rubocop:enable all
   end
 end

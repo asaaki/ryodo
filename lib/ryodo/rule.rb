@@ -1,5 +1,5 @@
 module Ryodo
-  class Rule < Struct.new(:exception, :stop_ok, :children)
+  Rule = Struct.new(:exception, :stop_ok, :children) do
     def children?
       !children.empty?
     end

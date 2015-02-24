@@ -28,15 +28,9 @@ module Ryodo
 
     def initialize(domainStr)
       fail TypeError, "Not a valid domain string!" unless domainStr.is_a?(String)
-      @domain_string   = DomainString.new domainStr.downcase
-      no_leading_dot   = @domain_string[0] != "."
-      parts            = Ryodo::Parser.run(@domain_string)
-      no_dot_but_parts = no_leading_dot && parts
-
-      @suffix    = parts[0].reverse.join(".")              if no_dot_but_parts
-      @domain    = (parts[0] + parts[1]).reverse.join(".") if no_dot_but_parts && !parts[1].empty?
-      @secondary = parts[1].first                          if no_dot_but_parts && !parts[1].empty?
-      @subdomain = (parts[2]).reverse.join(".")            if no_dot_but_parts && !parts[2].empty?
+      @domain_string = DomainString.new domainStr.downcase
+      parse_domain_string
+      retrieve_domain_parts
     end
 
     def suffix
@@ -65,7 +59,7 @@ module Ryodo
     end
 
     def valid?
-      !!@suffix && !!@secondary
+      @suffix && @secondary && true
     end
     alias_method :is_valid?, :valid?
 
@@ -85,6 +79,37 @@ module Ryodo
     # explicit definition of class' send
     def send(symbol, *args)
       __send__(symbol, *args)
+    end
+
+    private
+
+    def parse_domain_string
+      no_leading_dot     = @domain_string[0] != "."
+      @_parts            = Ryodo::Parser.run(@domain_string)
+      @_no_dot_but_parts = no_leading_dot && @_parts
+    end
+
+    def retrieve_domain_parts
+      retrieve_suffix
+      retrieve_domain
+      retrieve_secondary
+      retrieve_subdomain
+    end
+
+    def retrieve_suffix
+      @suffix = @_parts[0].reverse.join(".") if @_no_dot_but_parts
+    end
+
+    def retrieve_domain
+      @domain = (@_parts[0] + @_parts[1]).reverse.join(".") if @_no_dot_but_parts && !@_parts[1].empty?
+    end
+
+    def retrieve_secondary
+      @secondary = @_parts[1].first if @_no_dot_but_parts && !@_parts[1].empty?
+    end
+
+    def retrieve_subdomain
+      @subdomain = (@_parts[2]).reverse.join(".") if @_no_dot_but_parts && !@_parts[2].empty?
     end
   end
 end

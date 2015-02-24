@@ -1,9 +1,13 @@
 require "uri"
 
-class URI::Generic
-  alias_method :set_host_string, :set_host
+module URI
+  class Generic
+    alias_method :set_host_string, :set_host
 
-  def set_host(value)
-    @host = Ryodo.parse(set_host_string(value)) unless set_host_string(value).nil?
+    # rubocop:disable Style/AccessorMethodName
+    def set_host(value)
+      @host = Ryodo.parse(set_host_string(value)) unless set_host_string(value).nil?
+    end
+    # rubocop:enable Style/AccessorMethodName
   end
 end

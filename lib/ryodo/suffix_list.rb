@@ -1,12 +1,14 @@
+require "forwardable"
+
 module Ryodo
   class SuffixList
+    attr_reader :suffix_data
+
     def initialize(suffix_file = Ryodo::PUBLIC_SUFFIX_STORE)
       load_file(suffix_file)
     end
 
     def parse_data
-      # loads and converts to array
-      # "baz.bar.foo" => ["baz", "bar", "foo"]
       File.readlines(@suffix_file).map { |line| line.strip.split(".") }
     end
 
@@ -15,34 +17,30 @@ module Ryodo
       @suffix_data = parse_data << ["example"]
     end
 
-    def list
-      @suffix_data
-    end
+    alias_method :list, :suffix_data
 
     def inspect
       "#<#{self.class} FILE:#{@suffix_file} ENTRIES:#{@suffix_data.size}>"
     end
 
     class << self
+      extend Forwardable
+
+      # rubocop:disable Style/MethodName
       def SuffixList(suffix_file = Ryodo::PUBLIC_SUFFIX_STORE)
         instance(suffix_file)
       end
+      # rubocop:enable Style/MethodName
 
       def reload(suffix_file = Ryodo::PUBLIC_SUFFIX_STORE)
         instance.load_file(suffix_file) && true
       end
 
-      def list
-        instance.list
-      end
-
       def instance
-        @@instance ||= new
+        @instance ||= new
       end
 
-      def inspect
-        instance.inspect
-      end
+      delegate [:list, :inspect] => :instance
     end
 
     private_class_method :new
