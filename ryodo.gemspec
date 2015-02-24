@@ -7,14 +7,14 @@ Gem::Specification.new do |spec|
   spec.version       = Ryodo::VERSION
   spec.authors       = ["Christoph Grabo"]
   spec.email         = ["chris@dinarrr.com"]
-  spec.description   = %q{ryōdo【領土】 りょうど — A domain name parser gem using public suffix list (provided by publicsuffix.org / mozilla)}
-  spec.summary       = %q{ryōdo【領土】 りょうど — A domain name parser using public suffix list}
+  spec.description   = "ryōdo【領土】 りょうど — A domain name parser gem using public suffix list (provided by publicsuffix.org / mozilla)"
+  spec.summary       = "ryōdo【領土】 りょうど — A domain name parser using public suffix list"
   spec.homepage      = "http://github.com/asaaki/ryodo"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = []
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.test_files    = spec.files.grep(/\A(test|spec|features)\//)
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake"
