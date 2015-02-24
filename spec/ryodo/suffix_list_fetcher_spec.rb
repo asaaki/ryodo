@@ -1,7 +1,8 @@
 require "ryodo/suffix_list_fetcher"
 require "spec_helper"
 
-describe Ryodo::SuffixListFetcher do
+RSpec.describe Ryodo::SuffixListFetcher do
+  subject { described_class }
   let(:custom_uri) { "http://custom.suffix.list.example.com/foo-bar.dat" }
   let(:custom_storage) { "#{RYODO_TMP_ROOT}/custom-storage-path.dat" }
 
@@ -12,21 +13,21 @@ describe Ryodo::SuffixListFetcher do
   end
 
   it "#new creates a new instance with predefined vars" do
-    fetcher = described_class.new
+    fetcher = subject.new
 
     expect(fetcher.instance_variable_get("@uri")).to eq URI(Ryodo::PUBLIC_SUFFIX_DATA_URI)
     expect(fetcher.instance_variable_get("@store")).to be Ryodo::PUBLIC_SUFFIX_STORE
   end
 
   it "#new creates a new instance with custom vars" do
-    fetcher = described_class.new(custom_uri, custom_storage)
+    fetcher = subject.new(custom_uri, custom_storage)
 
     expect(fetcher.instance_variable_get("@uri")).to eq URI(custom_uri)
     expect(fetcher.instance_variable_get("@store")).to be custom_storage
   end
 
   context "data retrieval and storage" do
-    let(:fetcher) { described_class.new }
+    let(:fetcher) { subject.new }
 
     it "#fetch_data retrieves remote data" do
       first_line = /This Source Code Form is subject to the terms of the Mozilla Public/
@@ -58,11 +59,11 @@ describe Ryodo::SuffixListFetcher do
     let(:storage)     { "#{RYODO_TMP_ROOT}/suffixes.dat" }
 
     it "and returns true if successful" do
-      expect(described_class.fetch_and_save!(valid_uri, storage)).to be true
+      expect(subject.fetch_and_save!(valid_uri, storage)).to be true
     end
 
     it "and returns false if something failed" do
-      expect(described_class.fetch_and_save!(invalid_uri, storage)).to be false
+      expect(subject.fetch_and_save!(invalid_uri, storage)).to be false
     end
   end
 end

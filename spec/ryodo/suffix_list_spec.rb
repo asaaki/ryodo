@@ -1,46 +1,45 @@
 require "spec_helper"
 
-describe Ryodo::SuffixList do
-  context "singleton" do
+RSpec.describe Ryodo::SuffixList do
+  subject { described_class }
 
+  context "singleton" do
     it "cannot be instanciated via #new" do
-      expect{ described_class.new }.to raise_error
+      expect{ subject.new }.to raise_error
     end
 
     it "creates instance by calling the class itself" do
-      described_class.should_receive(:instance)
-      described_class.send(:"SuffixList")
+      expect(subject).to receive(:instance)
+      subject.send(:"SuffixList")
     end
 
     it "has .instance" do
-      expect(described_class.methods).to include(:instance)
+      expect(subject.methods).to include(:instance)
     end
 
     it "instance check" do
-      o1 = described_class.instance
-      o2 = described_class.instance
+      o1 = subject.instance
+      o2 = subject.instance
 
-      expect(o1).to be o2
+      expect(o1).to be(o2)
     end
   end
 
   context "methods" do
-    let(:described_instance) { described_class.instance }
+    let(:described_instance) { subject.instance }
 
     it ".reload can retrieve a fresh suffix list" do
       expect(described_instance).to receive(:load_file).and_return(true)
-      described_class.reload
+      subject.reload
     end
 
     it ".reload fails if given file doesn't exist" do
-      expect { described_class.reload("#{RYODO_TMP_ROOT}/invalid-file.dat") }.to raise_error
+      expect { subject.reload("#{RYODO_TMP_ROOT}/invalid-file.dat") }.to raise_error
     end
 
     it ".list returns an array of arrays" do
-      expect(described_class.list).to be_an(Array)
-      expect(
-        described_class.list.all? { |e| e.is_a?(Array) }
-      ).to be true
+      expect(subject.list).to be_an(Array)
+      expect(subject.list.all? { |e| e.is_a?(Array) }).to be(true)
     end
   end
 end

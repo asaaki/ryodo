@@ -1,5 +1,6 @@
 require "uri"
 require "net/http"
+require "ryodo"
 
 module Ryodo
   FetchError = Class.new(StandardError)

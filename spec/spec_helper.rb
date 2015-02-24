@@ -1,5 +1,7 @@
-require "coveralls"
-Coveralls.wear!
+if ENV["TRAVIS"] || ENV["CI"]
+  require "coveralls"
+  Coveralls.wear!
+end
 
 require "fileutils"
 require "fakeweb"
