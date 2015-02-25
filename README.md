@@ -1,27 +1,32 @@
 # ryodo
 
-[![gem version](https://badge.fury.io/rb/ryodo.png)](http://badge.fury.io/rb/ryodo)
-[![build status](https://secure.travis-ci.org/asaaki/ryodo.png)](http://travis-ci.org/asaaki/ryodo)
-[![dev dependency status](https://gemnasium.com/asaaki/ryodo.png)](https://gemnasium.com/asaaki/ryodo)
-[![code climate](https://codeclimate.com/github/asaaki/ryodo.png)](https://codeclimate.com/github/asaaki/ryodo)
-[![coverage status](https://coveralls.io/repos/asaaki/ryodo/badge.png?branch=master)](https://coveralls.io/r/asaaki/ryodo?branch=master)
+[![gem version](https://img.shields.io/gem/v/ryodo.svg)](https://rubygems.org/gems/ryodo)
+[![build status](https://img.shields.io/travis/asaaki/ryodo/master.svg)](http://travis-ci.org/asaaki/ryodo)
+[![dev dependency status](https://img.shields.io/gemnasium/asaaki/ryodo.png)](https://gemnasium.com/asaaki/ryodo)
+[![code climate](https://img.shields.io/codeclimate/github/asaaki/ryodo.svg)](https://codeclimate.com/github/asaaki/ryodo)
+[![coverage status](https://img.shields.io/coveralls/asaaki/ryodo/master.svg)](https://coveralls.io/r/asaaki/ryodo?branch=master)
 [![Support via Gratipay](http://img.shields.io/gratipay/asaaki.svg)](https://gratipay.com/asaaki)
 
 **ryōdo【領土】 りょうど — A domain name parser using public suffix list**
 
-Do you ever wanted to know if `suspicious.domain.name.blerp` is really a valid domain?
+Do you ever wanted to know if `suspicious.domain.name.blerp` is really a valid (registerable) domain?
 
-Do you ever wanted to know what is the domain portion of `others.guy.awesome.domain.co.jp`?
+Do you ever wanted to know what is the actual domain portion of `yet.another.awesome.domain.co.jp`?
 
 Then you should try `ryodo` and get the answers!
 
 Notice: This gem **does not** check DNS records to verify if a name was taken and registered, this is not its purpose.
 I am a big fan of the UNIX philosophy: *»Write programs that do one thing and do it well.«*
 
-My blog post about `ryodo`: [ryodo - domain parser (2012-06-02)](http://codecraft.io/2012/06/02/ryodo-domain-parser/)
+My blog post about `ryodo`: [ryodo - domain parser (2012-06-02)](http://markentier.de/codecraft/2012/06/02/ryodo-domain-parser/)
 
 
 ## Usage
+
+```ruby
+# Gemfile
+gem "ryodo"
+```
 
 ```ruby
 dom = Ryodo.parse("my.awesome.domain.co.jp")
@@ -92,14 +97,13 @@ require "ryodo/ext/string"
 In Gemfile:
 
 ```ruby
-gem "ryodo", :require => ["ryodo", "ryodo/ext/string"]
+gem "ryodo", require: %w[ryodo ryodo/ext/string]
 ```
 
 
 ### UTF-8 junkie?
 
 ```ruby
-# coding: utf-8
 require "ryodo/convenience/utf8"
 
 ryōdo("my.awesome.domain.co.jp")
@@ -139,99 +143,8 @@ uri.host.is_valid?
 In Gemfile:
 
 ```ruby
-gem "ryodo", :require => ["ryodo", "ryodo/ext/uri"]
+gem "ryodo", require: %w[ryodo ryodo/ext/uri]
 ```
-
-
-
-## Benchmark
-
-There is another gem called [public_suffix](https://github.com/weppos/publicsuffix-ruby), which does nearly the same (maybe with more features I don't need).
-
-So I did a tiny benchmark.
-
-**Setup**
-
-A domain input list, taken by publicsuffix.org (checkPublicSuffix test script under [publicsuffix.org/list/](http://publicsuffix.org/list/)).
-
-Some of them are also invalid (to test, if you implementation works correctly).
-
-I added some very long domain names with many parts (for look-up time scale).
-
-We only do a basic parsing and retrieve the registered/registrable domain. (Should hit the most important code of the gems.)
-
-The benchmark script can be found at [checks/benchmark.rb (branch: prof)](./blob/prof/checks/benchmark.rb).
-
-**Notes**
-
-`PublicSuffix.parse(…)` will raise errors if domain input is invalid (e.g. not a registrable domain).
-
-`Ryodo.parse(…)` won't raise but return nil values for invalid stuff (it only raises if input is not a String, of course).
-
-**Results**
-
-```
-Ruby: MRI 2.1.0p0
-ryodo (0.2.6)
-public_suffix (1.3.3)
-Machine: AMD Phenom(tm) II X6 1090T, 6 cores, 3.2 GHz; 8 GB RAM
-Linux 3.12.7-1-ARCH x86_64 GNU/Linux
-
-Benchmark of domain parsing
-===========================
-
-Number of loops: 1000
-Number of items per loop: 100
-
-Rehearsal ---------------------------------------------------
-ryodo             2.110000   0.000000   2.110000 (  2.122766)
-public_suffix    72.460000   0.020000  72.480000 ( 72.517502)
------------------------------------------ total: 74.590000sec
-
-                      user     system      total        real
-ryodo             2.130000   0.000000   2.130000 (  2.132354)
-public_suffix    72.000000   2.220000  74.220000 ( 74.272943)
-
-Ryodo is 34.83 times faster than PublicSuffix.
-```
-
-```
-Ruby: MRI 2.0.0p247
-ryodo (0.2.4.1)
-public_suffix (1.3.1)
-Machine: AMD Phenom(tm) II X6 1090T, 6 cores, 3.2 GHz; 8 GB RAM
-Linux 3.10.9-1-ARCH x86_64 GNU/Linux
-
-Benchmark of domain parsing
-===========================
-
-Number of loops: 1000
-Number of items per loop: 100
-
-Rehearsal ---------------------------------------------------
-ryodo             2.780000   0.000000   2.780000 (  2.779690)
-public_suffix    83.350000   0.000000  83.350000 ( 83.414578)
------------------------------------------ total: 86.130000sec
-
-                      user     system      total        real
-ryodo             2.830000   0.000000   2.830000 (  2.834630)
-public_suffix    83.450000   0.000000  83.450000 ( 83.510037)
-
-Ryodo vs. PublicSuffix
-
-Ryodo is 29.46 times faster than PublicSuffix.
-
-```
-
-Interestingly the public_suffix gem got even slower over time (and/or ruby versions)
-compared to my first benchmark (<http://codecraft.io/2012/06/02/ryodo-domain-parser/>).
-
-
-
-## TODO
-
-Lot of specs missing, this first version of second approach was developed in playground mode. ;o)
-
 
 
 ## Foo …
@@ -239,9 +152,8 @@ Lot of specs missing, this first version of second approach was developed in pla
 "Uh, excuse me Sir … just one more question." — Columbo (Peter Falk †)
 
 
-
 ## License
 
 [MIT/X11](./LICENSE)
 
-2012—2014 Christoph Grabo
+2012—2015 Christoph Grabo
