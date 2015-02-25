@@ -17,6 +17,12 @@ namespace :spec do
   task :fetch_data do
     system "wget http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat\?raw\=1 -O spec/_files/mozilla_effective_tld_names.dat"
   end
+
+  desc "Run match check script"
+  task :check do
+    success = system("bundle exec spec/suffix_checker.rb")
+    exit(success)
+  end
 end
 
 desc "Fetch and save public suffix data (task for updates)"
@@ -27,4 +33,4 @@ task :fetch_data do
   Ryodo::SuffixListFetcher.fetch_and_save!
 end
 
-task default: :spec
+task default: [:spec, "spec:check"]
