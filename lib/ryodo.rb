@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 module Ryodo
   RYODO_ROOT             = File.expand_path('../..', __FILE__)
-  PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/effective_tld_names.dat'.freeze
-  PUBLIC_SUFFIX_STORE    = "#{RYODO_ROOT}/data/suffix.dat".freeze
+  PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/effective_tld_names.dat'
+  PUBLIC_SUFFIX_STORE    = "#{RYODO_ROOT}/data/suffix.dat"
 end
 
 require 'ryodo/version'

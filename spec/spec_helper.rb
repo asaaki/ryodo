@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 if ENV['TRAVIS'] || ENV['CI']
   require 'codeclimate-test-reporter'
   require 'coveralls'

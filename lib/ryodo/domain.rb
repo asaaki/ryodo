@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Ryodo
   class Domain
     # DomainString is a String with extended methods

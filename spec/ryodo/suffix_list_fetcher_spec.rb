@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'ryodo/suffix_list_fetcher'
 require 'spec_helper'
 

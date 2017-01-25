@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Ryodo
   Rule = Struct.new(:exception, :stop_ok, :children) do
     def children?
