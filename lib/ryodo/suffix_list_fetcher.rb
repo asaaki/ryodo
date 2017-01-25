@@ -9,12 +9,16 @@ module Ryodo
   class SuffixListFetcher
     class << self
       def fetch_and_save!(uri = Ryodo::PUBLIC_SUFFIX_DATA_URI, store = Ryodo::PUBLIC_SUFFIX_STORE)
-        fetcher = new(uri, store)
-        fetcher.fetch_data
-        fetcher.prepare_data
-        fetcher.save_data
+        puts 'Fetch, process and save public suffix data ...'
+        new(uri, store).tap do |fetcher|
+          fetcher.fetch_data
+          fetcher.prepare_data
+          fetcher.save_data
+        end
+        puts '--- done.'
         true
       rescue
+        puts 'Something went wrong'
         false
       end
     end
@@ -41,10 +45,9 @@ module Ryodo
     end
 
     def save_data
-      if @prepared_data
-        File.open(Ryodo::PUBLIC_SUFFIX_STORE, 'w') do |fh|
-          fh.write @prepared_data.join("\n")
-        end
+      return unless @prepared_data
+      File.open(Ryodo::PUBLIC_SUFFIX_STORE, 'w') do |fh|
+        fh.write @prepared_data.join("\n")
       end
     end
 
