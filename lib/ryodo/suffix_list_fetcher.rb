@@ -7,6 +7,8 @@ module Ryodo
   FetchError = Class.new(StandardError)
 
   class SuffixListFetcher
+    SKIPPABLE_LINE_REGEXP = %r{\A//|\A\n}
+
     class << self
       def fetch_and_save!(uri = Ryodo::PUBLIC_SUFFIX_DATA_URI, store = Ryodo::PUBLIC_SUFFIX_STORE)
         puts 'Fetch, process and save public suffix data ...'
@@ -39,7 +41,7 @@ module Ryodo
 
     def prepare_data
       @prepared_data = @fetched_data.inject([]) do |acc, line|
-        next(acc) if line.match?(%r{\A//|\A\n})
+        next(acc) if SKIPPABLE_LINE_REGEXP.match?(line)
         acc << reverse_dn(line)
       end.sort
     end
