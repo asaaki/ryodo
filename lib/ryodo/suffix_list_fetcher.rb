@@ -41,7 +41,8 @@ module Ryodo
 
     def prepare_data
       @prepared_data = @fetched_data.inject([]) do |acc, line|
-        next(acc) if SKIPPABLE_LINE_REGEXP.match?(line)
+        # Using `Regexp#===` instead of `.match?`, to be compatible with Ruby 2.3 and older
+        next(acc) if SKIPPABLE_LINE_REGEXP === line # rubocop:disable Style/CaseEquality
         acc << reverse_dn(line)
       end.sort
     end
