@@ -21,6 +21,10 @@ Style/StringLiterals:
     - single_quotes
     - double_quotes
 
+Style/MethodName:
+  Exclude:
+    - lib/ryodo/ext/kernel.rb
+
 # 80 is not contemporary anymore
 Metrics/LineLength:
   Max: 120
