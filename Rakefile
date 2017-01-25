@@ -2,11 +2,6 @@
 require 'rspec/core/rake_task'
 require 'bundler/gem_tasks'
 
-desc 'Starts PRY with gem loaded'
-task :pry do
-  sh 'pry -I lib -r ryodo --no-pager'
-end
-
 desc 'Run all specs'
 task RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
@@ -16,9 +11,9 @@ end
 namespace :spec do
   desc 'Fetch mozilla_effective_tld_names.dat for specs'
   task :fetch_data do
-    base_url = 'http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat'
+    source_url = 'https://publicsuffix.org/list/effective_tld_names.dat'
     output = 'spec/_files/mozilla_effective_tld_names.dat'
-    system "wget #{base_url}\?raw\=1 -O #{output}"
+    system "wget '#{source_url}?raw=1' -O #{output}"
   end
 
   desc 'Run match check script'
