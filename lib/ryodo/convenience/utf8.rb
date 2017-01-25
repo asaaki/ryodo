@@ -1,21 +1,21 @@
 module Ryodo
   module Convenience
     module UTF8
-      alias_method :ryodo, :Ryodo
+      alias ryodo Ryodo
 
-      alias_method :ryodo?, :Ryodo?
-      alias_method :valid_domain?, :Ryodo?
+      alias ryodo? Ryodo?
+      alias valid_domain? Ryodo?
 
       # Unicode junkie? ;o)
-      alias_method :"ryōdo", :Ryodo
-      alias_method :"ryōdo?", :Ryodo?
+      alias ryōdo Ryodo
+      alias ryōdo? Ryodo?
 
-      alias_method :"領土", :Ryodo
-      alias_method :"りょうど", :Ryodo
+      alias 領土 Ryodo
+      alias りょうど Ryodo
 
-      alias_method :"領土?", :Ryodo?
-      alias_method :"りょうどか", :Ryodo?
-      alias_method :"りょうどか。", :Ryodo?
+      alias 領土? Ryodo?
+      alias りょうどか Ryodo?
+      alias りょうどか。 Ryodo?
     end
   end
 end

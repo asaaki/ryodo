@@ -1,36 +1,38 @@
-require "rspec/core/rake_task"
-require "bundler/gem_tasks"
+require 'rspec/core/rake_task'
+require 'bundler/gem_tasks'
 
-desc "Starts PRY with gem loaded"
+desc 'Starts PRY with gem loaded'
 task :pry do
-  sh "pry -I lib -r ryodo --no-pager"
+  sh 'pry -I lib -r ryodo --no-pager'
 end
 
-desc "Run all specs"
+desc 'Run all specs'
 task RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = "spec/**/*_spec.rb"
+  t.pattern = 'spec/**/*_spec.rb'
   t.verbose = false
 end
 
 namespace :spec do
-  desc "Fetch mozilla_effective_tld_names.dat for specs"
+  desc 'Fetch mozilla_effective_tld_names.dat for specs'
   task :fetch_data do
-    system "wget http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat\?raw\=1 -O spec/_files/mozilla_effective_tld_names.dat"
+    base_url = 'http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat'
+    output = 'spec/_files/mozilla_effective_tld_names.dat'
+    system "wget #{base_url}\?raw\=1 -O #{output}"
   end
 
-  desc "Run match check script"
+  desc 'Run match check script'
   task :check do
-    success = system("bundle exec spec/suffix_checker.rb")
+    success = system('bundle exec spec/suffix_checker.rb')
     exit(success)
   end
 end
 
-desc "Fetch and save public suffix data (task for updates)"
+desc 'Fetch and save public suffix data (task for updates)'
 task :fetch_data do
-  $LOAD_PATH << "lib"
-  require "ryodo"
-  require "ryodo/suffix_list_fetcher"
+  $LOAD_PATH << 'lib'
+  require 'ryodo'
+  require 'ryodo/suffix_list_fetcher'
   Ryodo::SuffixListFetcher.fetch_and_save!
 end
 
-task default: [:spec, "spec:check"]
+task default: %i(spec spec:check)

@@ -27,7 +27,7 @@ module Ryodo
 
     def find_node_by_rule(node_name, line)
       stop_ok   = node_name == line.last
-      exception = node_name[0] == "!"
+      exception = node_name[0] == '!'
       node_name = node_name[1..-1] if exception
       children  = {}
       [node_name, Ryodo::Rule.new(exception, stop_ok, children)]
@@ -63,7 +63,7 @@ module Ryodo
     end
 
     def find_rule_match(path)
-      rule_match = select_rule(path) || select_rule(path.dup.fill("*", -1))
+      rule_match = select_rule(path) || select_rule(path.dup.fill('*', -1))
       rule_match && !rule_match.is_suffix? ? nil : rule_match
     end
   end

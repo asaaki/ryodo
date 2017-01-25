@@ -1,8 +1,8 @@
-require "uri"
+require 'uri'
 
 module URI
   class Generic
-    alias_method :set_host_string, :set_host
+    alias set_host_string set_host
 
     # rubocop:disable Style/AccessorMethodName
     def set_host(value)

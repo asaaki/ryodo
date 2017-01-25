@@ -1,4 +1,4 @@
-require "forwardable"
+require 'forwardable'
 
 module Ryodo
   class SuffixList
@@ -9,15 +9,15 @@ module Ryodo
     end
 
     def parse_data
-      File.readlines(@suffix_file).map { |line| line.strip.split(".") }
+      File.readlines(@suffix_file).map { |line| line.strip.split('.') }
     end
 
     def load_file(suffix_file = Ryodo::PUBLIC_SUFFIX_STORE)
       @suffix_file = suffix_file
-      @suffix_data = parse_data << ["example"]
+      @suffix_data = parse_data << ['example']
     end
 
-    alias_method :list, :suffix_data
+    alias list suffix_data
 
     def inspect
       "#<#{self.class} FILE:#{@suffix_file} ENTRIES:#{@suffix_data.size}>"

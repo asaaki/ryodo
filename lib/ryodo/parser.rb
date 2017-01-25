@@ -5,7 +5,7 @@ module Ryodo
     end
 
     def build_query(domain)
-      domain.split(".").reverse
+      domain.split('.').reverse
     end
 
     def parse(domain)

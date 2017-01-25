@@ -1,24 +1,24 @@
 module Ryodo
-  RYODO_ROOT             = File.expand_path("../..", __FILE__)
-  PUBLIC_SUFFIX_DATA_URI = "https://publicsuffix.org/list/effective_tld_names.dat"
-  PUBLIC_SUFFIX_STORE    = "#{RYODO_ROOT}/data/suffix.dat"
+  RYODO_ROOT             = File.expand_path('../..', __FILE__)
+  PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/effective_tld_names.dat'.freeze
+  PUBLIC_SUFFIX_STORE    = "#{RYODO_ROOT}/data/suffix.dat".freeze
 end
 
-require "ryodo/version"
+require 'ryodo/version'
 
-require "ryodo/domain"
-require "ryodo/parser"
-require "ryodo/rule"
-require "ryodo/rule_set"
-require "ryodo/suffix_list"
+require 'ryodo/domain'
+require 'ryodo/parser'
+require 'ryodo/rule'
+require 'ryodo/rule_set'
+require 'ryodo/suffix_list'
 
-require "ryodo/methods"
+require 'ryodo/methods'
 # require "ryodo/ext/string"
 # require "ryodo/ext/uri"
 
 # Convenient shorthands
 module Ryodo
   extend Ryodo::Methods
-  require "ryodo/convenience"
+  require 'ryodo/convenience'
 end
 # require "ryodo/convenience/utf8"

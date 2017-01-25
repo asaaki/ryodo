@@ -1,6 +1,6 @@
-require "uri"
-require "net/http"
-require "ryodo"
+require 'uri'
+require 'net/http'
+require 'ryodo'
 
 module Ryodo
   FetchError = Class.new(StandardError)
@@ -25,31 +25,33 @@ module Ryodo
 
     def fetch_data
       http         = Net::HTTP.new(@uri.host, @uri.port)
-      http.use_ssl = @uri.scheme == "https"
+      http.use_ssl = @uri.scheme == 'https'
       request      = Net::HTTP::Get.new(@uri.request_uri)
       response     = http.request(request)
-      fail Ryodo::FetchError, "Could not fetch suffix data! (#{response})" unless response.is_a?(Net::HTTPSuccess)
+      raise Ryodo::FetchError, "Could not fetch suffix data! (#{response})" unless response.is_a?(Net::HTTPSuccess)
       @fetched_data = response.body.lines
     end
 
     def prepare_data
       @prepared_data = @fetched_data.inject([]) do |acc, line|
-        next(acc) if line =~ %r{\A//|\A\n}
+        next(acc) if line.match?(%r{\A//|\A\n})
         acc << reverse_dn(line)
       end.sort
     end
 
     def save_data
-      File.open(Ryodo::PUBLIC_SUFFIX_STORE, "w") do |fh|
-        fh.write @prepared_data.join("\n")
-      end if @prepared_data
+      if @prepared_data
+        File.open(Ryodo::PUBLIC_SUFFIX_STORE, 'w') do |fh|
+          fh.write @prepared_data.join("\n")
+        end
+      end
     end
 
     private
 
     def reverse_dn(domain_name)
       # "foo.bar.baz" => "baz.bar.foo"
-      domain_name.strip.split(".").reverse.join(".")
+      domain_name.strip.split('.').reverse.join('.')
     end
   end
 end

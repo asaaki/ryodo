@@ -1,23 +1,23 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Ryodo::SuffixList do
   subject { described_class }
 
-  context "singleton" do
-    it "cannot be instanciated via #new" do
+  context 'singleton' do
+    it 'cannot be instanciated via #new' do
       expect { subject.new }.to raise_error
     end
 
-    it "creates instance by calling the class itself" do
+    it 'creates instance by calling the class itself' do
       expect(subject).to receive(:instance)
-      subject.send(:"SuffixList")
+      subject.send(:SuffixList)
     end
 
-    it "has .instance" do
+    it 'has .instance' do
       expect(subject.methods).to include(:instance)
     end
 
-    it "instance check" do
+    it 'instance check' do
       o1 = subject.instance
       o2 = subject.instance
 
@@ -25,10 +25,10 @@ RSpec.describe Ryodo::SuffixList do
     end
   end
 
-  context "methods" do
+  context 'methods' do
     let(:described_instance) { subject.instance }
 
-    it ".reload can retrieve a fresh suffix list" do
+    it '.reload can retrieve a fresh suffix list' do
       expect(described_instance).to receive(:load_file).and_return(true)
       subject.reload
     end
@@ -37,7 +37,7 @@ RSpec.describe Ryodo::SuffixList do
       expect { subject.reload("#{RYODO_TMP_ROOT}/invalid-file.dat") }.to raise_error
     end
 
-    it ".list returns an array of arrays" do
+    it '.list returns an array of arrays' do
       expect(subject.list).to be_an(Array)
       expect(subject.list.all? { |e| e.is_a?(Array) }).to be(true)
     end
