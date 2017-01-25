@@ -99,21 +99,6 @@ gem 'ryodo', require: %w[ryodo ryodo/ext/string]
 ```
 
 
-### UTF-8 junkie?
-
-```ruby
-require 'ryodo/convenience/utf8'
-
-ryōdo('my.awesome.domain.co.jp')
-領土('my.awesome.domain.co.jp')
-りょうど('my.awesome.domain.co.jp')
-
-ryōdo?('my.awesome.domain.co.jp')
-領土?('my.awesome.domain.co.jp')
-りょうどか('my.awesome.domain.co.jp')
-```
-
-
 ### Extension of URI
 
 Ryodo can transparently hook into URI, so you can use every described method on `.host`.
