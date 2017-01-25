@@ -1,17 +1,33 @@
-AllCops:
-  Exclude:
-    - Rakefile
-    - ryodo.gemspec
-    - checks/matching.rb
+require:
+  - rubocop-rspec
 
-Documentation:
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+
+Style/Documentation:
   Enabled: false
 
-Metrics/LineLength:
-  Max: 120
+Metrics/ModuleLength:
+  Enabled: false
+
+# Current state is that we prefer the opposite (reduce/inject)
+Style/EachWithObject:
+  Enabled: false
 
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
   SupportedStyles:
     - single_quotes
     - double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 80 is not contemporary anymore
+Metrics/LineLength:
+  Max: 120
+
+# RSpec cops
+RSpec/NestedGroups:
+  Max: 3
