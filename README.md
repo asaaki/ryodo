@@ -35,11 +35,11 @@ dom = Ryodo.parse('my.awesome.domain.co.jp')
 #=> Ryodo::Domain
 
                   #    SUBDOMAIN  DOMAIN   TLD
-dom.tld           #=>                   'co.jp'  - returns only the public suffix
-dom.domain        #=>            'domain.co.jp'  - returns only registered/registrable domain
-dom.sld           #=>            'domain'        - returns only registered/registrable domain name w/o TLD
-dom.subdomain     #=> 'my.awesome'               - returns only subdomain parts
-dom               #=> 'my.awesome.domain.co.jp'  - returns full domain string
+dom.tld           #=>                   'co.jp'  - public suffix
+dom.domain        #=>            'domain.co.jp'  - registered/registrable domain
+dom.sld           #=>            'domain'        - registered/registrable domain name w/o TLD
+dom.subdomain     #=> 'my.awesome'               - subdomain parts
+dom               #=> 'my.awesome.domain.co.jp'  - full domain string
 dom.fqdn          #=> 'my.awesome.domain.co.jp.' - full domain + trailing dot
 
 # all parts also reversable
@@ -59,30 +59,26 @@ dom.fqdn.to_a(:reverse)   #=> ['','jp','co','domain','awesome','my']
 dom.fqdn.to_a(:r)         #=> ['','jp','co','domain','awesome','my']
 ```
 
-You can call it in different ways:
-
-```ruby
-Ryodo.parse('my.awesome.domain.co.jp')
-Ryodo('my.awesome.domain.co.jp')
-Ryodo['my.awesome.domain.co.jp']
-ryodo('my.awesome.domain.co.jp')
-```
-
 
 ### Quick check (.domain_valid?)
 
 ```ruby
 Ryodo.domain_valid?('my.awesome.domain.co.jp') #=> true
 Ryodo.domain_valid?('co.jp')                   #=> false
-
-# aliases
-Ryodo.valid_domain?('my.awesome.domain.co.jp')
-Ryodo.valid?('my.awesome.domain.co.jp')
-Ryodo?('my.awesome.domain.co.jp')
-ryodo?('my.awesome.domain.co.jp')
-valid_domain?('my.awesome.domain.co.jp')
 ```
 
+
+### Kernel extension
+
+```ruby
+require 'ryodo/ext/kernel'
+
+Ryodo('my.awesome.domain.co.jp')
+#=> returns a Ryodo::Domain
+
+Ryodo?('my.awesome.domain.co.jp')
+#=> true
+```
 
 ### String extension
 
