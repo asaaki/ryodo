@@ -1,11 +1,8 @@
 # ryodo
 
 [![gem version](https://img.shields.io/gem/v/ryodo.svg?style=flat-square)](https://rubygems.org/gems/ryodo)
-[![build status](https://img.shields.io/travis/asaaki/ryodo/master.svg?style=flat-square)](http://travis-ci.org/asaaki/ryodo)
-[![dev dependency status](https://img.shields.io/gemnasium/asaaki/ryodo.svg?style=flat-square)](https://gemnasium.com/asaaki/ryodo)
-[![code climate](https://img.shields.io/codeclimate/github/asaaki/ryodo.svg?style=flat-square)](https://codeclimate.com/github/asaaki/ryodo)
+[![ci](https://github.com/asaaki/ryodo/workflows/ci/badge.svg)](https://github.com/asaaki/ryodo/actions?query=workflow:ci)
 [![coverage status](https://img.shields.io/coveralls/asaaki/ryodo/master.svg?style=flat-square)](https://coveralls.io/r/asaaki/ryodo?branch=master)
-[![Support via Gratipay](http://img.shields.io/gratipay/asaaki.svg?style=flat-square)](https://gratipay.com/asaaki)
 
 **ryōdo【領土】 りょうど — A domain name parser using public suffix list**
 
