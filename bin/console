@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
+
 require_relative './_shared'
 require 'pry'
 require 'ryodo'

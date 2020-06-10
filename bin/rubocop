@@ -2,4 +2,4 @@
 # frozen_string_literal: true
 
 require_relative './_shared'
-load Gem.bin_path('rspec-core', 'rspec')
+load Gem.bin_path('rubocop', 'rubocop')
