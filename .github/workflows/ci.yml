@@ -42,3 +42,4 @@ jobs:
 
     - name: Run linter
       run: bin/rubocop
+      continue-on-error: true
