@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = []
-  spec.test_files    = spec.files.grep(%r{\A(test|spec|features)\/})
+  spec.test_files    = spec.files.grep(%r{\A(test|spec|features)/})
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler'
