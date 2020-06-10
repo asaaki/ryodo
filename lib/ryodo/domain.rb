@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Ryodo
   class Domain
     # DomainString is a String with extended methods
@@ -29,6 +30,7 @@ module Ryodo
 
     def initialize(domainStr)
       raise TypeError, 'Not a valid domain string!' unless domainStr.is_a?(String)
+
       @domain_string = DomainString.new domainStr.downcase
       parse_domain_string
       retrieve_domain_parts

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 if ENV['TRAVIS'] || ENV['CI']
   require 'codeclimate-test-reporter'
   require 'coveralls'
@@ -15,8 +16,8 @@ require 'fakeweb'
 require 'uri'
 require 'ryodo'
 
-RYODO_SPEC_ROOT = File.expand_path('..', __FILE__)
-RYODO_TMP_ROOT  = File.expand_path('../../tmp/spec', __FILE__)
+RYODO_SPEC_ROOT = File.expand_path(__dir__)
+RYODO_TMP_ROOT  = File.expand_path('../tmp/spec', __dir__)
 
 FileUtils.mkdir_p RYODO_TMP_ROOT unless File.exist?(RYODO_TMP_ROOT)
 

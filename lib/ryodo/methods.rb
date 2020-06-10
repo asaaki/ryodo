@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Ryodo
   module Methods
     def parse(domain_string)

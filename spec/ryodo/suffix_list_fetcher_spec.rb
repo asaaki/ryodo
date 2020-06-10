@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+
 require 'ryodo/suffix_list_fetcher'
 require 'spec_helper'
 
 RSpec.describe Ryodo::SuffixListFetcher do
   subject { described_class }
+
   let(:custom_uri) { 'http://custom.suffix.list.example.com/foo-bar.dat' }
   let(:custom_storage) { "#{RYODO_TMP_ROOT}/custom-storage-path.dat" }
 
@@ -54,7 +56,7 @@ RSpec.describe Ryodo::SuffixListFetcher do
     end
   end
 
-  context '.fetch_and_save! does all jobs' do
+  describe '.fetch_and_save! does all jobs' do
     let(:valid_uri)   { Ryodo::PUBLIC_SUFFIX_DATA_URI }
     let(:invalid_uri) { "#{Ryodo::PUBLIC_SUFFIX_DATA_URI}&invalid_file" }
     let(:storage)     { "#{RYODO_TMP_ROOT}/suffixes.dat" }

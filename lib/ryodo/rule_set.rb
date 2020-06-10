@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Ryodo
   class RuleSet
     def initialize
@@ -46,6 +47,7 @@ module Ryodo
 
     def select_rule(rule_path)
       return unless rule_path[-1]
+
       if rule_path[0..-2].empty?
         @tree[rule_path[-1]]
       else

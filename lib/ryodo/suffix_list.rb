@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'forwardable'
 
 module Ryodo
@@ -41,7 +42,7 @@ module Ryodo
         @instance ||= new
       end
 
-      delegate [:list, :inspect] => :instance
+      delegate %i[list inspect] => :instance
     end
 
     private_class_method :new

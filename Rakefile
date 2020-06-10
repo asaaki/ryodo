@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rspec/core/rake_task'
 require 'bundler/gem_tasks'
 
@@ -31,4 +32,4 @@ task :fetch_data do
   Ryodo::SuffixListFetcher.fetch_and_save!
 end
 
-task default: %i(spec spec:check)
+task default: %i[spec spec:check]
