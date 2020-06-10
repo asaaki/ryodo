@@ -37,5 +37,8 @@ jobs:
     - name: Run tests
       run: bin/rspec
 
+    - name: Run suffix checker
+      run: spec/suffix_checker.rb
+
     - name: Run linter
       run: bin/rubocop
