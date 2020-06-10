@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if ENV['TRAVIS'] || ENV['CI']
+if ENV['CI']
   require 'codeclimate-test-reporter'
   require 'coveralls'
 
@@ -24,7 +24,7 @@ FileUtils.mkdir_p RYODO_TMP_ROOT unless File.exist?(RYODO_TMP_ROOT)
 FakeWeb.register_uri(
   :get,
   Ryodo::PUBLIC_SUFFIX_DATA_URI,
-  body: File.read("#{RYODO_SPEC_ROOT}/_files/mozilla_effective_tld_names.dat")
+  body: File.read("#{RYODO_SPEC_ROOT}/fixtures/public_suffix_list.dat")
 )
 
 FakeWeb.register_uri(

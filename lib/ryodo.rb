@@ -10,7 +10,7 @@ require 'ryodo/methods'
 
 module Ryodo
   RYODO_ROOT = File.expand_path('..', __dir__)
-  PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/effective_tld_names.dat'
+  PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/public_suffix_list.dat'
   PUBLIC_SUFFIX_STORE = "#{RYODO_ROOT}/data/suffix.dat"
 
   extend Ryodo::Methods
