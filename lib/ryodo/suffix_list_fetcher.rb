@@ -32,10 +32,7 @@ module Ryodo
     end
 
     def fetch_data
-      http         = Net::HTTP.new(@uri.host, @uri.port)
-      http.use_ssl = @uri.scheme == 'https'
-      request      = Net::HTTP::Get.new(@uri.request_uri)
-      response     = http.request(request)
+      response = Net::HTTP.get_response(@uri)
       raise Ryodo::FetchError, "Could not fetch suffix data! (#{response})" unless response.is_a?(Net::HTTPSuccess)
 
       @fetched_data = response.body.lines
