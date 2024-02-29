@@ -23,14 +23,14 @@ module Ryodo
     def build_line(line)
       line.each.with_index do |node_name, idx|
         node_name, node = find_node_by_rule(node_name, line)
-        idx > 0 ? add_node_to_parent(node_name, node, idx, line) : add_node_to_tree(node_name, node)
+        idx.positive? ? add_node_to_parent(node_name, node, idx, line) : add_node_to_tree(node_name, node)
       end
     end
 
     def find_node_by_rule(node_name, line)
       stop_ok   = node_name == line.last
       exception = node_name[0] == '!'
-      node_name = node_name[1..-1] if exception
+      node_name = node_name[1..] if exception
       children  = {}
       [node_name, Ryodo::Rule.new(exception, stop_ok, children)]
     end

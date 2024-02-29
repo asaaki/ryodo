@@ -8,10 +8,10 @@ gemspec
 
 group :development, :test do
   gem 'fakeweb'
-  gem 'pry-doc'
   gem 'pry'
+  gem 'pry-doc'
   gem 'rspec'
-  gem 'rubocop-rspec'
   gem 'rubocop'
+  gem 'rubocop-rspec'
   gem 'webmock'
 end

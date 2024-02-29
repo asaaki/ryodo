@@ -11,7 +11,7 @@ require 'ryodo/methods'
 module Ryodo
   RYODO_ROOT = File.expand_path('..', __dir__)
   PUBLIC_SUFFIX_DATA_URI = 'https://publicsuffix.org/list/public_suffix_list.dat'
-  PUBLIC_SUFFIX_STORE = "#{RYODO_ROOT}/data/suffix.dat"
+  PUBLIC_SUFFIX_STORE = "#{RYODO_ROOT}/data/suffix.dat".freeze
 
   extend Ryodo::Methods
 end
