@@ -15,7 +15,7 @@ Then you should try `ryodo` and get the answers!
 Notice: This gem **does not** check DNS records to verify if a name was taken and registered, this is not its purpose.
 I am a big fan of the UNIX philosophy: *»Write programs that do one thing and do it well.«*
 
-My blog post about `ryodo`: [ryodo - domain parser (2012-06-02)](http://markentier.de/codecraft/2012/06/02/ryodo-domain-parser/)
+My blog post about `ryodo`: [ryodo - domain parser (2012-06-02)](https://web.archive.org/web/20140606032232/https://markentier.de/codecraft/2012/06/02/ryodo-domain-parser/)
 
 
 ## Usage
